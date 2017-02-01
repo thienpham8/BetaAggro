@@ -1,0 +1,15 @@
+the subdirectory venv/ is our python virtual environment. It has everything we need to run this project, including dependencies like Flask.
+
+It's ok if you've never used virtual environments before, all it does is keep everything nice and tidy in one folder so we can remain consistent and not have to rely on everyone installing all the dependencies on their global system environments.
+
+If you don't know how to add stuff like installing new modules that don't come by default with Python to the virtual environment, just message me (smith7929@gmail.com) and I will install them and update via git.
+
+In order for our python scripts to use this virtual environment, I've written runEnv.py to make it easy.
+
+All you need to do when you're making a new script is put "import runEnv" at the top of your script above your other imports. You can look to yelp.py for guidance.
+
+From there, it will look in venv/ for all our modules instead of our system environment. In this way we can remain consistent.
+
+http://www.simononsoftware.com/virtualenv-tutorial-part-2/ --- A nice guide for more info
+
+-Zac
