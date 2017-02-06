@@ -1,0 +1,16 @@
+Framework/Design:
+8 HTML templates:
+RED: home, search, business, login, register, review(probably in line on business page)
+Yellow: business analytics, user profile
+Green: contact, about us, support, Stalica merch.
+
+Classes:
+1 class per API
+1 class google maps (Ken has this handled)
+reviews --> subclass for super user
+business container --> subgroups for business page functions
+user class
+search class
+support class
+register class --> user/business subclasses
+database class(es)
