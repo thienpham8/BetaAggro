@@ -30,7 +30,7 @@ def badlogin():
 #I'm sure there is a much easier way to to this
 @app.route('/nightlifeuser',username)
 def nightlifeu():
-    return render_template("nightlifeu.html",username"
+    return render_template("nightlifeu.html",username)
 
 @app.route('/nightlifeguest')
 def nightlifeg():
