@@ -12,6 +12,7 @@ class user(Object):
         self.email = "NONE"
         self.favorites = []
         self.phoneNumber = "NONE"
+        userCount += 1
 
     def addFavorite(self,link):
         self.favorites.append(link)
