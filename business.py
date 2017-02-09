@@ -23,7 +23,7 @@ class business(Object):
 
     def allowClaimed(self,username):
         self.userClaimed.append(username)
-        self.claimed = False
+        self.claimed = True
 
     def denyClaimed(self,username):
         if username in self.userClaimed():
