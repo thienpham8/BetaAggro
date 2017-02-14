@@ -1,4 +1,4 @@
-#K.Koltermann
+#Author: K.Koltermann 2/something/2017
 import os
 import sys
 import const #should have a constant file
