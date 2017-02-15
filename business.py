@@ -6,6 +6,7 @@ import const
 class business(Object):
     def __init__(self,businessName,ID,address,zipcode):
         self.businessName = businessName
+        self.description = "NONE"
         #ID = "0123456789 etc"
         self.ID = ID
         #Address = "STRING"

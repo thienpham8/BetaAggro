@@ -1,5 +1,8 @@
 #K.Koltermann
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, flash, request, Response, render_template
+import business
+import admin
+import const
 import database
 import whateverYouNeed
 import user
@@ -18,12 +21,15 @@ def homeuser():
         password = request.form['password']
         accept = db.checkUserPassword(username,password)
         if accept:
+            flash('You are now logged in.', 'success')
             return render_template("homeuser.html",username)
             #logout button links to homeguest
         else:
+            flash('Login failed', 'Error')
             return redirect(url_for("badlogin"))
 
 #TODO: K.KOLTERMANN: both login and search are in the same form, need to fix
+#2/12/17: K.Koltermann: actually its okay
 @app.route('/searchuser',methods = ["POST"])
 def searchu():
     if request.method == 'POST':
@@ -46,6 +52,14 @@ def searchg():
             return render_template("searchguest.html",data)
         else:
             redirect(url_for("noresultguest",searchString))
+            
+@app.errorhandler(404)
+def bad_url(exc):
+    return Response('<h3>Not found</h3'),404
+
+@app.errorhandler(403)
+def forbidden(exc):
+    return Response('<h3>Forbidden<h3>'),403
 
 @app.route('/noresultuser',searchString)
 def noresultuser():
@@ -82,11 +96,11 @@ def entertainmentg():
     return render_template("entertainmentg.html")
 
 @app.route('/dininguser',username)
-def entertainmentu():
+def diningu():
     return render_template("diningu.html",username)
 
 @app.route('/diningguest')
-def entertainmentg():
+def diningg():
     return render_template("diningg.html")
     
         

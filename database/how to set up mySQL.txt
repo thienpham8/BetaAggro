@@ -1,0 +1,16 @@
+https://dev.mysql.com/downloads/installer/
+Download
+Install
+
+*for password, use: 1q2w3e4r
+*leave users as default(root)
+
+Once everything is installed, open MySQL Workbench
+Log in using password
+At the top, open Server --> Data Import
+
+Select the .sql file from the github folder
+
+Hit the 'Start Import' button in the bottom right
+
+Done!
