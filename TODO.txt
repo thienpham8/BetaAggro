@@ -1,2 +1,6 @@
 ___ yelp.py ___
 - Need to take the business id and query https://api.yelp.com/v2/business/ *** DONE ***
+
+___ dbConnector.py ___
+
+- addYelpBusiness: Need to populate other related tables, e.g. category

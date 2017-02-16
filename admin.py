@@ -19,3 +19,5 @@ class admin(Object):
             db.removeBusiness(ID)
 
 #Do we want admins?
+
+# Z- Yes, but let's low priority it

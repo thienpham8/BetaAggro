@@ -7,6 +7,9 @@ Install
 
 Once everything is installed, open MySQL Workbench
 Log in using password
+
+Create a new schema named "betaaggro" by pressing the button under the menu.
+
 At the top, open Server --> Data Import
 
 Select the .sql file from the github folder
