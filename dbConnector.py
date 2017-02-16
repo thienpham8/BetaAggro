@@ -35,15 +35,15 @@ class Connector(object):
 	@commit
 	def addYelpBusiness(self, dic):
 		"""This makes an entry into the 'yelp' table and related tables"""
-		
 		business = ("INSERT INTO yelp "
 							"(claimed, rating, ratingImage, reviewCount, name, ratingImageSmall, "
 							"url, isClosed, phone, snippet, imageURL, snippetURL, uniqueName) "
 							"VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
-		
-		businessData = (dic["is_claimed"], dic["rating"], dic["rating_img_url"], dic["review_count"], 
-									dic["name"], dic["rating_img_url_small"], dic["url"], dic["is_closed"], dic["phone"],
-									dic["snippet_text"], dic["image_url"], dic["snippet_image_url"], dic["id"])
+							
+
+		businessData = (dic.get("is_claimed", ""), dic.get("rating", ""), dic.get("rating_img_url", ""), dic.get("review_count", ""), 
+									dic.get("name", ""), dic.get("rating_img_url_small", ""), dic.get("url", ""), dic.get("is_closed", ""), dic.get("phone", ""),
+									dic.get("snippet_text", ""), dic.get("image_url", ""), dic.get("snippet_image_url", ""), dic.get("id", ""))			
 									
 		self.cursor.execute(business, businessData)
 		
