@@ -5,7 +5,7 @@ import const
 import utils
 import database as db
 
-class admin(Object):
+class Admin(Object):
     def __init__(self,name,adminCode):
         self.name = name
         self.adminCode = adminCode

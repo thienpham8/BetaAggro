@@ -2,21 +2,45 @@
 import os
 import sys
 import const
+import dbConnector
 
-class business(Object):
-    def __init__(self,businessName,ID,address,zipcode):
-        self.businessName = businessName
-        self.description = "NONE"
-        #ID = "0123456789 etc"
-        self.ID = ID
-        #Address = "STRING"
-        self.address = address
-        self.zipcode = zipcode
-        self.userClaimed = ""
-        self.claimed = False
-        self.locked = False
-        self.rating = const.RATING
-        self.cost = const.COST
+
+class BusinessFactory(Object):
+	def __init__(self, criteria):
+		self.criteria
+		pass
+		
+	def buildBusiness(self, criteria):
+		pass # return list of built businesses
+		
+
+class Business(Object):
+    def __init__(self):
+	
+		self.baID = betaaggroID
+		self.address = 
+		self.phone = phone
+		self.lattitude = lattitude
+		self.longitude = longitude
+		self.yID = yID # Not sure we would need this
+		self.yRatingImage = yRatingImage
+		self.yReviewCount = yReviewCount
+		self.yRatingImageSmall = yRatingImageSmall
+		self.yURL = yURL
+		self.isClosed = isClosed
+		self.ySnippet = ySnippet
+		self.yImageURL = yImageURL
+		self.ySnippetURL = ySnippetURL
+		self.yUniqueName = yUniqueName # Not sure we would need this
+		
+		self.name = name
+        self.userClaimed = None # <---- The value for this should be a User object
+        self.yelpRating = 0
+		self.googleRating = 0
+		self.facebookRating = 0
+		self.betaAggroRating = 0
+        self.cost = const.COST # Z: What is this for?
+		self.locked = False # Z: What is this for?
 
     def getInfo(self):
         a = [self.businessName,self.ID,self.address,self.zipcode,self.rating,self.cost]
@@ -41,6 +65,7 @@ class business(Object):
 
     def lock(self):
         self.locked = True
+	
 
 
 

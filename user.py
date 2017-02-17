@@ -4,7 +4,7 @@ import sys
 import const #should have a constant file
 
 #should not store password in user object
-class user(Object):
+class User(Object):
     userCount = 0
     def __init__(self,username):
         self.username = username
