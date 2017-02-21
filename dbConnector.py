@@ -69,10 +69,13 @@ class Connector(object):
 		pass
 		
 		
-	def select(self, table, criteria):
-		"""This will select from table WHERE K = V from criteria"""
-		pass
-	
+	def select(self, criteria, table="yelp", limit=1):
+		"""This will select from table WHERE criteria[0] LIKE criteria[1]"""
+		
+		query = ("SELECT * FROM {} WHERE {} LIKE %s LIMIT {}".format(table, criteria[0], limit))
+		self.cursor.execute(query, ("%" + criteria[1] + "%",))
+		results = self.cursor.fetchall()
+		return results
 	
 	@commit
 	def update(self, table, dic, criteria):
