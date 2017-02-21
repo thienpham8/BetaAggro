@@ -57,7 +57,7 @@ def get_zipcode_from_address(string):
             zipcode.append(strList[x])
             if counter == 5:
                 break
-        elif strList[x] == '8':
+        elif strList[x] == '8'
             counter += 1
             zipcode.append(strList[x])
             if counter == 5:
@@ -73,7 +73,11 @@ def get_zipcode_from_address(string):
     return "".join(zipcode)
 
 
+#Thien Pham 2/21/2017
 
+def filter_by_cost(string, price):
+    busiList = list(string)
+       
     
 
 #any functions to be used across many files
