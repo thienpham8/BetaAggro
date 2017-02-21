@@ -3,6 +3,8 @@
 # 2017-2-16
 # -------------------------- #
 
+# TO DO: populate other related tables
+
 import yelp
 import dbConnector
 
@@ -14,3 +16,5 @@ if __name__ == "__main__":
 		businessListing = results['businesses'][i]
 		business = y.business(id=businessListing['id'])
 		c.addYelpBusiness(business)
+	
+	c.close()

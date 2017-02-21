@@ -3,12 +3,13 @@ from flask import Flask, redirect, url_for, flash, request, Response, render_tem
 import business
 import admin
 import const
-import database as db
-import whateverYouNeed
+import dbConnector
 import user
 app = Flask(__name__)
 
-@app.route('/homeguest')
+searchString = ""
+
+@app.route('/')
 def homeguest():
     return render_template("homeguest.html")
     #on the homeguest.html file, form action = route method = name, for buttons
@@ -73,11 +74,11 @@ def bad_url(exc):
 def forbidden(exc):
     return Response('<h3>Forbidden<h3>'),403
 
-@app.route('/noresultuser',searchString)
+@app.route('/noresultuser')
 def noresultuser():
     return render_template("noresultuser.html",searchString)
 
-@app.route('/noresultguest',searchString)
+@app.route('/noresultguest')
 def noresultguest():
     return render_template("noresultguest.html",searchString)
 
@@ -91,15 +92,15 @@ def badlogin():
     #login link --> homeuser, which does the check again
 
 #I'm sure there is a much easier way to to this
-@app.route('/nightlifeuser',username)
+@app.route('/nightlifeuser')
 def nightlifeu():
     return render_template("nightlifeu.html",username)
 
 @app.route('/nightlifeguest')
 def nightlifeg():
-    return render_template("nightlifeg.html")
+    return render_template("nightlifreg.html")
 
-@app.route('/entertainmentuser',username)
+@app.route('/entertainmentuser')
 def entertainmentu():
     return render_template("entertainmentu.html",username)
 
@@ -107,7 +108,7 @@ def entertainmentu():
 def entertainmentg():
     return render_template("entertainmentg.html")
 
-@app.route('/dininguser',username)
+@app.route('/dininguser')
 def diningu():
     return render_template("diningu.html",username)
 

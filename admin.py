@@ -3,9 +3,9 @@ import os
 import sys
 import const
 import utils
-import database as db
+import dbConnector
 
-class Admin(Object):
+class Admin(object):
     def __init__(self,name,adminCode):
         self.name = name
         self.adminCode = adminCode
