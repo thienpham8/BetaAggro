@@ -1,13 +1,17 @@
 #K.Koltermann
-from flask import Flask, redirect, url_for, flash, request, Response, render_template
+from flask import Flask, redirect, url_for, flash, request, Response, render_template, send_from_directory
 import business
 import admin
 import const
 import dbConnector
 import user
-app = Flask(__name__)
+#app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
-searchString = ""
+
+@app.route('/resources/<path:path>')
+def send_js(path):
+    return send_from_directory('resources', path)
 
 @app.route('/')
 def homeguest():
