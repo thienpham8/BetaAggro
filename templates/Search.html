@@ -29,21 +29,11 @@ dl{
 
 </form>
 
-<dl>
-	<dt>Place Holder 1</dt>
-	<dd> brief description </dd>
-	
-	<dt>Place Holder 2</dt>
-	<dd> brief description </dd>
-	
-	<dt>Place Holder 3</dt>
-	<dd> brief description </dd>
-	
-	<dt>Place Holder 4</dt>
-	<dd> brief description </dd>
-
-
-</dl>
+<div>
+	{% for item in response %}
+		<p>{{ item }}<br><br>
+	{% endfor %}
+</div>
 
 
 </html>
