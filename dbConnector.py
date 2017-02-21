@@ -46,8 +46,10 @@ class Connector(object):
 									dic.get("name", ""), dic.get("rating_img_url_small", ""), dic.get("url", ""), dic.get("is_closed", ""), dic.get("phone", ""),
 									dic.get("snippet_text", ""), dic.get("image_url", ""), dic.get("snippet_image_url", ""), dic.get("id", ""))			
 									
-		self.cursor.execute(business, businessData)
-		
+		try:
+			self.cursor.execute(business, businessData)
+		except mysql.connector.errors.IntegrityError as e:
+			print "Duplicate entry: {}".format(dic["name"])
 		
 	@commit
 	def addGoogleBusiness(self, dic):

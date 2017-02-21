@@ -15,6 +15,7 @@ if __name__ == "__main__":
 	for i in xrange(0, len(results['businesses'])):
 		businessListing = results['businesses'][i]
 		business = y.business(id=businessListing['id'])
+
 		c.addYelpBusiness(business)
 	
 	c.close()
