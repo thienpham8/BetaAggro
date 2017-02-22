@@ -15,11 +15,12 @@ if __name__ == "__main__":
 	searches = ["food", "restaurant", "mechanic", "Walgreens", "Walmart", "Gas Station", "Grocery Store", "Save Mart", "Fast Food", "Pool Service", "Landscaper", "Handyman"]
 	
 	for s in searches:
-		results = y.search(term=s, location="San Fransisco, CA", limit=40)
+		results = y.search(term=s, location="Antioch, CA", limit=40)
 		for i in xrange(0, len(results['businesses'])):
 			businessListing = results['businesses'][i]
 			business = y.business(id=businessListing['id'])
 
-			c.addYelpBusiness(business)
+			print c.addYelpBusiness(business)
+			print c.addCategory(businessListing["id"])
 			
 	c.close()

@@ -6,22 +6,26 @@
 import mysql.connector
 from functools import wraps
 
+import yelp
+
 
 class Connector(object):
 	"""This class handles the connection between back-end scripts and the database"""
 	
-	def __init__(self, usr="root", pw="1q2w3e4r", hosted="localhost", db="betaaggro"):
+	def __init__(self, usr="root", pw="1q2w3e4r", hosted="localhost", db="betaaggro", verbose=False):
 		self.connection = mysql.connector.connect(user=usr, password=pw, host=hosted, database=db)
 		self.cursor = self.connection.cursor(dictionary=True)
 		self.response = None
 		self.errors = None
+		self.verbose = verbose
 		
 	def commit(func):
 		"""Decorator to commit after wrapped function"""
 		def _decorator(self, *args, **kwargs):
 			r = func(self, *args, **kwargs)
 			self.connection.commit()
-			print "Committed."
+			if self.verbose: 
+				print "Committed."
 			return r
 		return wraps(func)(_decorator)
 		
@@ -41,15 +45,39 @@ class Connector(object):
 							"url, isClosed, phone, snippet, imageURL, snippetURL, uniqueName) "
 							"VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
 							
-
 		businessData = (dic.get("is_claimed", ""), dic.get("rating", ""), dic.get("rating_img_url", ""), dic.get("review_count", ""), 
 									dic.get("name", ""), dic.get("rating_img_url_small", ""), dic.get("url", ""), dic.get("is_closed", ""), dic.get("phone", ""),
-									dic.get("snippet_text", ""), dic.get("image_url", ""), dic.get("snippet_image_url", ""), dic.get("id", ""))			
-									
+									dic.get("snippet_text", ""), dic.get("image_url", ""), dic.get("snippet_image_url", ""), dic.get("id", ""))										
 		try:
 			self.cursor.execute(business, businessData)
+			return str(dic["id"])
 		except mysql.connector.errors.IntegrityError as e:
-			print "Duplicate entry: {}".format(dic["name"])
+			try:
+				return "Duplicate entry: {}".format(dic["name"])
+			except:
+				return "Duplicate entry."
+		
+		
+	@commit
+	def addCategory(self,businessName):
+		"""This associates a category with a business"""
+		
+		y = yelp.YelpAPI()
+		categories = y.business(businessName)["categories"][0]
+		
+		for category in categories:
+			
+			insert = ("INSERT INTO categories VALUES (%s, %s)")
+			
+			try:
+				self.cursor.execute(insert, (category, businessName))
+				return "{} category: {}".format(str(businessName), str(category))
+			except mysql.connector.errors.IntegrityError as e:
+				try:
+					return "Duplicate entry: {}".format(businessName + " category " + category)
+				except:
+					return "Duplicate category entry."
+	
 		
 	@commit
 	def addGoogleBusiness(self, dic):

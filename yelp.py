@@ -25,7 +25,7 @@ class YelpAPI(object):
 		self.auth = OAuth1(self.credentials["yelp"]["key"], self.credentials["yelp"]["kSecret"], 
 													self.credentials["yelp"]["token"], self.credentials["yelp"]["tSecret"])
 
-	def search(self, term="CSUEB", location="Hayward", limit=1):
+	def search(self, term="CSUEB", location="Hayward", limit=1, addToDB=True):
 		"""URL encodes search term and location of search and returns a JSON dictionary response"""
 	
 		encoded = urllib.urlencode({"term" : term, "location" : location, "limit" : limit}) # maximum limit allowed by Yelp is 40
@@ -37,16 +37,14 @@ class YelpAPI(object):
 		return self.response
 		
 		
-	def business(self, id="california-state-university-east-bay-hayward"):
+	def business(self, id="california-state-university-east-bay-hayward", addToDB=True):
 	
-		if self.response:
-			response = requests.get(self.businessURL+id, auth=self.auth)
+		response = requests.get(self.businessURL+id, auth=self.auth)
 			
 		self.response = response.json()
-		
+
 		# returns a python dictionary of the JSON response
 		return self.response
-
 
 		
 # ------ Script executed below ------ #
