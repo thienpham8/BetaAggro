@@ -43,10 +43,12 @@ def searchu():
 		connection = dbConnector.Connector()
 		data = connection.select(criteria, limit=10)
 		
-		if data:
-			return render_template("search.html", response = data)
+		print data 
+		
+		if len(data) > 0:
+			return render_template("search.html", found = True, response = data)
 		else:
-			return render_template("search.html", response = "Business Not Found")
+			return render_template("search.html", found = False, response = "Business Not Found")
 			
 @app.route('/searchguest',methods = ["POST"])
 def searchg():

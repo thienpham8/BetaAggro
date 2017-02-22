@@ -12,7 +12,7 @@ class Connector(object):
 	
 	def __init__(self, usr="root", pw="1q2w3e4r", hosted="localhost", db="betaaggro"):
 		self.connection = mysql.connector.connect(user=usr, password=pw, host=hosted, database=db)
-		self.cursor = self.connection.cursor()
+		self.cursor = self.connection.cursor(dictionary=True)
 		self.response = None
 		self.errors = None
 		

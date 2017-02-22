@@ -57,7 +57,7 @@ def get_zipcode_from_address(string):
             zipcode.append(strList[x])
             if counter == 5:
                 break
-        elif strList[x] == '8'
+        elif strList[x] == '8':
             counter += 1
             zipcode.append(strList[x])
             if counter == 5:
