@@ -79,8 +79,9 @@ def gMapConvert(list)
     for i in list
         float(i)
     return list
-       
-
+## ask Zac       
+def shareBusiness(string,string)
+    
     
 
 
