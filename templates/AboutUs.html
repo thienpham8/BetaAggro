@@ -58,7 +58,24 @@ input[type=text]:focus {
   <li class="w3-hide-small w3-right"><a href="javascript:void(0);" class="w3-hover-white">Welcome {{username}}</a></li>
  </ul>
 
-  
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+    <ul class="w3-navbar w3-left-align w3-theme">
+      <li><a href="#team">About Us</a></li>
+      <li><a href="#work">Contact Us</a></li>
+      <li><a href="#pricing">Purpose</a></li>
+      <li><a href="#">Search</a></li>
+      <li><a href="#contact">Log Out</a></li>
+      <li class="w3-dropdown-hover">
+      <a href="javascript:void(0);" title="Notifications">Categories <i class="fa fa-caret-down"></i></a>     
+      <div class="w3-dropdown-content w3-light-grey w3-card-4">
+        <a href="#">TACOS</a>
+        <a href="#">BURRITOS</a>
+        <a href="#">CASADILLAS</a>
+      </div>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <!-- Image Header -->
@@ -85,7 +102,7 @@ input[type=text]:focus {
 </div>
 
 
-
+<!-- Team Container -->
 <div class="w3-container w3-padding-64 w3-center" id="team">
 <h1>The Beta Aggro Development Team </h1>
 <p>(please hire us...please)</p>
@@ -128,6 +145,15 @@ input[type=text]:focus {
 </div>
 </div>
 
+
+
+
+
+
+
+
+ 
+<!-- Google Maps -->
 <div id="googleMap" style="width:100%;height:420px;"></div>
 <script>
 function myMap()
@@ -146,8 +172,11 @@ function myMap()
   marker.setMap(map);
 }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-<!I need to get an api key from google>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzzuPt6Tql59-LIahJioMsDo9tLB5SgaY&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
 
 
 </body>
