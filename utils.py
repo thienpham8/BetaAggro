@@ -74,10 +74,14 @@ def get_zipcode_from_address(string):
 
 
 #Thien Pham 2/21/2017
-
-def filter_by_cost(string, price):
-    busiList = list(string)
+# convert google map coordiniates 
+def gMapConvert(list)
+    for i in list
+        float(i)
+    return list
        
+
     
+
 
 #any functions to be used across many files
