@@ -84,10 +84,11 @@ input[type=text]:focus {
   </div>
 </div>
 </div>
-<form action="http://localhost:5000/searchuser" method="POST">
+	
+<form id="ratingsForm" action="http://localhost:5000/searchuser" method="POST">
   <input type="text" maxlength="120" name="search" placeholder="Type here for tacos">
   <input type="submit" class="w3-button w3-block w3-teal" value="search" />
-</form>
+
 </div>
 <div class="w3-half">
 <div class="w3-card-2 w3-orange">
@@ -127,6 +128,7 @@ input[type=text]:focus {
 		<label class="star-5" for="star-5">5</label>
 		<span></span>
 	</div>
+	  </form>
   </div>
   </div>
 </div>
