@@ -133,14 +133,36 @@ class Connector(object):
 		"""This adds a user to the 'user' table and related tables"""
 		pass
 		
-		
+	@commit
 	def select(self, criteria, table="yelp", limit=1):
 		"""This will select from table WHERE criteria[0] LIKE criteria[1]"""
 		
 		query = ("SELECT * FROM {} WHERE {} LIKE %s LIMIT {}".format(table, criteria[0], limit))
 		self.cursor.execute(query, ("%" + criteria[1] + "%",))
-		results = self.cursor.fetchall()
-		return results
+		businesses = self.cursor.fetchall()
+		
+		for b in businesses:
+			queryCategories = ("SELECT * FROM categories WHERE business LIKE %s")
+			print queryCategories % b["uniqueName"]
+			self.cursor.execute(queryCategories, ("%"+b["uniqueName"].encode("ascii", "ignore")+"%",))
+			b["categories"] = self.cursor.fetchall()
+			print b["categories"]
+			
+		for b in businesses:
+			queryLocation = ("SELECT * FROM location WHERE business LIKE %s")
+			print queryLocation % b["uniqueName"]
+			self.cursor.execute(queryLocation, ("%"+b["uniqueName"].encode("ascii", "ignore")+"%",))
+			b["location"] = self.cursor.fetchall()
+			print b["location"]
+			
+		for b in businesses:
+			queryReview = ("SELECT * FROM review WHERE business LIKE %s")
+			print queryReview % b["uniqueName"]
+			self.cursor.execute(queryReview, ("%"+b["uniqueName"].encode("ascii", "ignore")+"%",))
+			b["review"] = self.cursor.fetchall()
+			print b["review"]
+		
+		return businesses
 	
 	@commit
 	def update(self, table, dic, criteria):

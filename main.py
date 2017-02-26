@@ -4,6 +4,7 @@ import business
 import admin
 import const
 import dbConnector
+import yelp
 import user
 #app = Flask(__name__)
 app = Flask(__name__, static_url_path='')
@@ -35,17 +36,17 @@ def homeuser():
 
 #TODO: K.KOLTERMANN: both login and search are in the same form, need to fix
 #2/12/17: K.Koltermann: actually its okay
-@app.route('/searchuser',methods = ["POST"])
+@app.route('/searchuser', methods = ["POST"])
 def searchu():
-
 	if request.method == 'POST':
 		criteria = ("name", request.form['search'])
-		connection = dbConnector.Connector()
-		data = connection.select(criteria, limit=10)
+		print criteria
+		y = yelp.YelpAPI()
+		y.search(criteria[1], limit=5, addToDB=True, verbose=True)
+		connection = dbConnector.Connector(verbose=True)
+		data = connection.select(criteria, limit=5)
 		
-		print data 
-		
-		if len(data) > 0:
+		if data:
 			return render_template("search.html", found = True, response = data)
 		else:
 			return render_template("search.html", found = False, response = "Business Not Found")

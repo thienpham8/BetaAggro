@@ -75,12 +75,12 @@ def get_zipcode_from_address(string):
 
 #Thien Pham 2/21/2017
 # convert google map coordiniates 
-def gMapConvert(list)
-    for i in list
-        float(i)
-    return list
-## ask Zac       
-def shareBusiness(string,string)
+# def gMapConvert(list)
+    # for i in list
+        # float(i)
+    # return list
+# ask Zac       
+# def shareBusiness(string,string)
     
     
 
