@@ -12,6 +12,8 @@ import urllib
 import flask
 from requests_oauthlib import OAuth1
 
+import dbConnector
+
 
 class YelpAPI(object):
 	"""This class handles everything with the Yelp API"""
@@ -33,14 +35,23 @@ class YelpAPI(object):
 		
 		self.response = response.json()
 		
+		if addToDB:
+			try:
+				c = dbConnector.Connector()
+				for x in xrange(0, len(self.response["businesses"])):
+					c.addYelpBusiness(self.response["businesses"][x])
+					c.addCategory(self.response["businesses"][x]["id"], 
+								self.response['businesses'][x]["categories"][0])
+			except:
+				pass
+		
 		# returns a python dictionary of the JSON response
 		return self.response
 		
 		
-	def business(self, id="california-state-university-east-bay-hayward", addToDB=True):
+	def _business(self, id="california-state-university-east-bay-hayward", addToDB=False):
 	
 		response = requests.get(self.businessURL+id, auth=self.auth)
-			
 		self.response = response.json()
 
 		# returns a python dictionary of the JSON response
@@ -51,6 +62,4 @@ class YelpAPI(object):
 if __name__ == "__main__":
 	yelp = YelpAPI()
 	r = yelp.search(term="", location="Hayward,  CA", limit=40)
-
-		
 	

@@ -6,9 +6,6 @@
 import mysql.connector
 from functools import wraps
 
-import yelp
-
-
 class Connector(object):
 	"""This class handles the connection between back-end scripts and the database"""
 	
@@ -20,7 +17,7 @@ class Connector(object):
 		self.verbose = verbose
 		
 	def commit(func):
-		"""Decorator to commit after wrapped function"""
+		"""Decorator to commit entries to database after wrapped function executes"""
 		def _decorator(self, *args, **kwargs):
 			r = func(self, *args, **kwargs)
 			self.connection.commit()
@@ -36,6 +33,11 @@ class Connector(object):
 		self.cursor.close()
 		self.connection.close()
 		
+	@commit
+	def addYelpReview(self, dic):
+		"""This takes a yelp review and inserts it into the review table"""
+		pass
+		
 		
 	@commit
 	def addYelpBusiness(self, dic):
@@ -50,20 +52,36 @@ class Connector(object):
 									dic.get("snippet_text", ""), dic.get("image_url", ""), dic.get("snippet_image_url", ""), dic.get("id", ""))										
 		try:
 			self.cursor.execute(business, businessData)
-			return str(dic["id"])
+			return dic.get("id", "No id").encode("ascii", "ignore")
 		except mysql.connector.errors.IntegrityError as e:
 			try:
 				return "Duplicate entry: {}".format(dic["name"])
 			except:
 				return "Duplicate entry."
 		
+	@commit
+	def addLocation(self, dic):
+		"""Adds location to location table in DB using YelpAPI.search dictionary results"""
+		
+		insert = ("INSERT INTO location VALUES (%s, %s, %s, %s, %s, %s, %s, %s)")
+		
+		data = (dic.get("id","No id"), dic["location"].get("city", ""), dic["location"].get("postal_code", ""), dic["location"].get("country_code", ""),
+					" ".join(dic["location"]["display_address"]), float(dic["location"]["coordinate"].get("latitude", 0)), 
+					float(dic["location"]["coordinate"].get("longitude", 0)), dic["location"].get("state_code", "No State"))
+					
+		try:
+			self.cursor.execute(insert, data)
+			return dic.get("id", "No id").encode("ascii", "ignore")
+		except mysql.connector.errors.IntegrityError as e:
+				try:
+					return "Duplicate entry: {}".format(businessName + " location")
+				except:
+					return "Duplicate category entry."
+		
 		
 	@commit
-	def addCategory(self,businessName):
-		"""This associates a category with a business"""
-		
-		y = yelp.YelpAPI()
-		categories = y.business(businessName)["categories"][0]
+	def addCategory(self,businessName, categories):
+		"""This associates a category with a business. This requires the businessName rendered from YelpAPI.business()"""
 		
 		for category in categories:
 			
@@ -71,7 +89,7 @@ class Connector(object):
 			
 			try:
 				self.cursor.execute(insert, (category, businessName))
-				return "{} category: {}".format(str(businessName), str(category))
+				return "{} category: {}".format(businessName.encode("ascii", "ignore"), category.encode("ascii", "ignore"))
 			except mysql.connector.errors.IntegrityError as e:
 				try:
 					return "Duplicate entry: {}".format(businessName + " category " + category)
@@ -117,9 +135,5 @@ class Connector(object):
 		pass
 		
 		
-	
-
-		
-	
-			
-	
+if __name__ == "__main__":
+	print "Hi! Don't run this script. It is intended for import only!"
