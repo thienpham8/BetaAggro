@@ -34,9 +34,28 @@ class Connector(object):
 		self.connection.close()
 		
 	@commit
-	def addYelpReview(self, dic):
+	def addReview(self, dic, site="yelp"):
 		"""This takes a yelp review and inserts it into the review table"""
-		pass
+		
+		review = dic["reviews"][0]
+		
+		insert = ("INSERT INTO review VALUES (%s, %s, %s, %s, %s, %s, %s)")
+		
+		data = (dic.get("id", "0"), site, review.get("rating", "0"), 
+					review.get("excerpt", "None"), 
+					review.get("time_created", 0), review["user"].get("image_url", ""), 
+					review["user"].get("name", ""))
+					
+		print data
+					
+		try:
+			self.cursor.execute(insert, data)
+			return dic.get("id", "No id").encode("ascii", "ignore")
+		except mysql.connector.errors.IntegrityError as e:
+			try:
+				return "Duplicate entry: {}".format(dic["name"])
+			except:
+				return "Duplicate entry."	
 		
 		
 	@commit
