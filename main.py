@@ -40,11 +40,15 @@ def homeuser():
 def searchu():
 	if request.method == 'POST':
 		criteria = ("name", request.form['search'])
-		print criteria
 		y = yelp.YelpAPI()
-		y.search(criteria[1], limit=5, addToDB=True, verbose=True)
-		connection = dbConnector.Connector(verbose=True)
-		data = connection.select(criteria, limit=5)
+		connection = dbConnector.Connector(verbose=False)
+		
+		data = connection.select(criteria, limit=10)
+		
+		if len(data) < 10:
+			y.search(criteria[1], limit=10, addToDB=True, verbose=False)
+		connection = dbConnector.Connector(verbose=False)
+		data = connection.select(criteria, limit=10)
 		
 		if data:
 			return render_template("search.html", found = True, response = data)
