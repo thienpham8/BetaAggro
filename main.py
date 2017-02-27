@@ -69,7 +69,13 @@ def usercreated():
 		db.createUser(result)
 		return render_template("usercreated.html",result)
 
-
+@app.route('/userprofile',methods = ['POST','GET'])
+def userprofile():
+	if request.method == 'POST':
+		result = request.form
+		db.updateUser(result)
+		return render_template("homeuser.html")
+	
 @app.route('/aboutus')
 def aboutUs():
 	return render_template("AboutUs.html")
