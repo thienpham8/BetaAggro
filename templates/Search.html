@@ -140,18 +140,18 @@ input[type=text]:focus {
 <div class="w3-container">
 	{% if found %}
 		{% for item in response %}
-			<table class="w3-table w3-striped w3-bordered">
-				<tr>
-					<th class="w3-green w3-xlarge " style="text-align: center;" colspan="2" >{{ item["name"] }}</th>
-				</tr>
-				{% for k in item.keys() %}
-					<tr>
-						<td style="text-align: center;">{{ k }} </td>
-						<td style="text-align: center;"> {{ item[k] }} </td>
-					</tr>
-				{% endfor %}
-			</table>
-			<br>
+			<div class="BusinessContainer">
+				<div class="BusinessImage">
+					<img src={{ item["imageURL"] }} style="float: left;" />
+					<p> {{ item["name"] }} </p>
+					<img src={{ item["ratingImage"] }} style="float: left" />
+					<p> {{ item["reviewCount"] }} Reviews </p>
+					<p> {{ item["categories"][0]["category"] }} </p>
+				</div>
+			</div>
+			<hr>
+					
+				
 		{% endfor %}
 	{% else %}
 		<h1 style="text-align: center;">BUSINESS NOT FOUND</h1>

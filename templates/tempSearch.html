@@ -1,0 +1,25 @@
+
+<div class="w3-container">
+	{% if found %}
+		{% for item in response %}
+			<table class="w3-table w3-striped w3-bordered">
+				<tr>
+					<th class="w3-green w3-xlarge " style="text-align: center;" colspan="2" >{{ item["name"] }}</th>
+				</tr>
+				<tr>
+					<td> Image: </td>
+					<td style="width:50%;"> <img src={{ item["imageURL"] }}> </td>
+				</tr>
+				{% for k in item.keys() %}
+					<tr>
+						<td style="text-align: center;">{{ k }} </td>
+						<td style="text-align: center;"> {{ item[k] }} </td>
+					</tr>
+				{% endfor %}
+			</table>
+			<br>
+		{% endfor %}
+	{% else %}
+		<h1 style="text-align: center;">BUSINESS NOT FOUND</h1>
+	{% endif %}
+</div>
