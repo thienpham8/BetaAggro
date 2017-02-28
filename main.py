@@ -4,7 +4,7 @@ import business
 import admin
 import user
 import const
-import dbConnector as db
+import dbConnector
 import yelp
 import user
 import flask_login
@@ -54,7 +54,7 @@ def homeuser():
 @app.route('/searchuser', methods = ["POST"])
 def searchu():
 	if request.method == 'POST':
-		criteria = ("name", request.form['search'])
+		criteria = ("name", request.form['searchline'])
 		y = yelp.YelpAPI()
 		connection = dbConnector.Connector(verbose=False)
 		
