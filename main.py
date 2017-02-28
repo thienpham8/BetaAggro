@@ -2,17 +2,31 @@
 from flask import Flask, redirect, url_for, flash, request, Response, render_template, send_from_directory
 import business
 import admin
+import user
 import const
 import dbConnector
 import yelp
 import user
+import flask_login
+import sys
+
 #app = Flask(__name__)
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__, static_url_path="")
+app.secret_key = "It's a secret, I'm serial!"
+loginManager = flask_login.LoginManager()
+loginManager.init_app(app)
 
-
+# Smith: This will allow our pages to access betaaggro/resources folder for images
 @app.route('/resources/<path:path>')
 def send_js(path):
 	return send_from_directory('resources', path)
+# ------------------------------------------------------------------------------------ #
+
+
+@loginManager.user_loader
+def load_user(user_id):
+	return user.User.get(user_id)
+
 
 @app.route('/')
 def homeguest():
@@ -20,6 +34,7 @@ def homeguest():
 	#on the homeguest.html file, form action = route method = name, for buttons
 	#create new user button is outside <form></form> and links to new user page
 
+	
 @app.route('/homeuser',methods = ["POST"])
 def homeuser():
 	if request.method == 'POST':
@@ -55,6 +70,50 @@ def searchu():
 		else:
 			return render_template("search.html", found = False, response = "Business Not Found")
 			
+			
+@app.route('/login', methods= ["POST", "GET"])
+def login():
+
+	if request.method == "GET":
+		return render_template("Login.html")
+	
+	if request.method == "POST":
+	
+		usr = user.User()
+		usr.login(request.form)
+		flask_login.login_user(usr)
+		#do login shit
+		return redirect("/")		
+	
+@app.route("/register", methods=["POST", "GET"])
+def register():
+
+	if request.method == "GET":
+	
+		return render_template("Register.html")
+	
+	if request.method == "POST":
+	
+		# try:
+		dic = request.form
+		print "form data : ", dic
+		usr = user.User()
+		success = usr.register(dic)
+		if success:
+			flask_login.login_user(usr)
+			flash("Registration successfull. Welcome, {}".format(usr.firstname))
+			print "registration success"
+			return redirect("/")
+		else:
+			print "registration failure."
+		# except:
+			# flash("Registration error.")
+			# print "registration fail"
+			# print sys.exc_info()[0]
+			# print sys.exc_info()[1]
+			# print sys.exc_info()[2]
+			# return redirect("/")
+					
 @app.route('/searchguest',methods = ["POST"])
 def searchg():
 	if request.method == 'POST':
@@ -99,10 +158,6 @@ def noresultuser():
 @app.route('/noresultguest')
 def noresultguest():
 	return render_template("noresultguest.html")
-
-@app.route('/createnewuser')
-def login():
-	return render_template("Register.html")
 
 @app.route('/badlogin')
 def badlogin():

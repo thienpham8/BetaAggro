@@ -31,7 +31,55 @@ class Connector(object):
 		"""Closes connection nicely"""
 		self.connection.commit()
 		self.cursor.close()
-		self.connection.close()
+		self.connection.close()	
+
+		
+	def _userExists(self, id):
+		"""Checks if username already in use"""
+	
+		self.cursor.execute("SELECT * FROM user WHERE id = %s", (id,))
+		user = self.cursor.fetchone()
+		
+		print "_userExists : ", user
+
+		if user != None:
+			return True
+			
+		return False
+		
+	@commit
+	def registerUser(self, username, password, args):
+		"""Attempts to register user"""
+	
+		print "Args : ", (args)
+	
+		if self._userExists(username):
+			return None
+			
+		else:
+			insert = ("INSERT INTO user VALUES (%s, %s, 1, %s, %s, %s, %s, %s, %s)")
+			
+			self.cursor.execute(insert, (args))
+			self.connection.commit()
+			
+			return self.loginUser(username, password)
+		
+	def loginUser(self, id, *pw):
+		"""Attempts to log in the user"""
+		
+		print "here goes login"
+		
+		if pw:
+			self.cursor.execute("SELECT * FROM user WHERE id=%s AND password=%s", (id, pw[0]))
+		else:
+			self.cursor.execute("SELECT * FROM user WHERE id=%s", (id,))
+		
+		user = self.cursor.fetchone()
+		
+		print "login finished"
+		print "User is: {}".format(user["firstname"])
+		
+		return user
 		
 	@commit
 	def addReview(self, dic, site="yelp"):

@@ -40,7 +40,6 @@ class YelpAPI(object):
 			try:
 				c = dbConnector.Connector()
 				for x in xrange(0, len(self.response["businesses"])):
-					print len(self.response["businesses"])
 					r = c.addYelpBusiness(self.response["businesses"][x])
 					if verbose: print r
 					

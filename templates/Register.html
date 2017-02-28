@@ -76,25 +76,25 @@ label{
 <h2 align="center">Register Page</h2>
 <br>
 
-	<form action= "register_page.php">
+	<form action= "/register", method="post">
 		
 		Username:<br>
-		<input type="text" placeholder="Username"><br>
+		<input type="text" name="Username" placeholder="Username"><br>
 		Password:<br>
-		<input type="password" placeholder="Password"><br>
+		<input type="password" name="Password" placeholder="Password"><br>
 		Email:<br>
-		<input type="text" placeholder="Email"><br>
+		<input type="text" name="Email" placeholder="Email"><br>
 		
 		
 		First Name:<br>
-		<input type="text" placeholder="First name"><br>
+		<input type="text" name="First name" placeholder="First name"><br>
 		Last Name:<br>
-		<input type="text" placeholder="Last name"><br>
+		<input type="text" name="Last name" placeholder="Last name"><br>
 		Date of Birth:<br>
 		<select name="DOBMonth">
 	<option> - Month - </option>
 	<option value="January">January</option>
-	<option value="Febuary">Febuary</option>
+	<option value="February">February</option>
 	<option value="March">March</option>
 	<option value="April">April</option>
 	<option value="May">May</option>
@@ -109,15 +109,15 @@ label{
 
 <select name="DOBDay">
 	<option> - Day - </option>
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
+	<option value="01">1</option>
+	<option value="02">2</option>
+	<option value="03">3</option>
+	<option value="04">4</option>
+	<option value="05">5</option>
+	<option value="06">6</option>
+	<option value="07">7</option>
+	<option value="08">8</option>
+	<option value="09">9</option>
 	<option value="10">10</option>
 	<option value="11">11</option>
 	<option value="12">12</option>
@@ -215,15 +215,15 @@ label{
 	<option value="1948">1948</option>
 	<option value="1947">1947</option>
 	
-</select><br>
+	</select><br>
 		Zip Code:<br>
-		<input type="text" placeholder="Zip code"><br>
+		<input type="text" name="Zip code" placeholder="Zip code"><br>
 		Gender:<br>
 		<input type="radio" name="gender" value="male" checked> Male<br>
 		<input type="radio" name="gender" value="female"> Female<br>
 		<input type="radio" name="gender" value="other"> Other<br>
 		
-		<input type="submit" value="Register"
+		<input type="submit" value="Register">
 		
 	</form>
 </div>

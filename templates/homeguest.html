@@ -54,7 +54,15 @@ input[type=text]:focus {
   
   <li class="w3-hide-small w3-right"><a href="#" class="w3-hover-teal" title="Search"><i class="fa fa-search"></i></a></li>
   <li class="w3-hide-small w3-right"><a href="http://localhost:5000/login" class="w3-hover-white">Login</a></li>
-  <li class="w3-hide-small w3-right"><a href="javascript:void(0);" class="w3-hover-white">Welcome Guest</a></li>
+  <li class="w3-hide-small w3-right">
+	<a href="javascript:void(0);" class="w3-hover-white">
+		{% if current_user.is_authenticated %}
+			Welcome, {{ current_user.firstname }}!
+		{% else %}
+			Welcome, Guest.
+		{% endif %}
+	</a>
+  </li>
  </ul>
 
   
