@@ -4,7 +4,7 @@ import business
 import admin
 import user
 import const
-import dbConnector
+import dbConnector as db
 import yelp
 import user
 import flask_login
