@@ -1,3 +1,6 @@
 -- Add in location text field to search form, handle in backend
+-Will take care of this - Ken
 
 -- dupes in DB
+
+--unit test all main.py functions
