@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<style>
+search{
+padding-right: 10px;
+width: 150%;
+}
+dd{
+	display:list-item;
+	list-style-type: disc;
+}
+form{
+	text-align: center;
+}
+dl{
+	padding-top: 80px;
+	text-align:center;
+}
+table {
+	margin-left:auto;
+	margin-right:auto;
+	border: 1px solid black;
+	text-align: center;
+}
+td {
+	padding: 15px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+tr {
+	text-align: center;
+}
+input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: orange;
+    background-image: url('hankface.jpg');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    
+}
+input[type=text]:focus {
+    width: 100%;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body id="myPage">
+
+
+<!-- Navbar -->
+<div class="w3-top">
+ <ul class="w3-navbar w3-theme-d2 w3-left-align">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  </li>
+  <li><a href="http://localhost:5000/homeuser" class="w3-white"><i class="fa fa-home w3-margin-right"></i>Beta Aggro Home</a></li>
+  <li class="w3-hide-small"><a href="https://www.google.com" class="w3-hover-white">About Us</a></li>
+  <li class="w3-hide-small"><a href="#work" class="w3-hover-white">Contact Us</a></li>
+  <li class="w3-hide-small"><a href="#pricing" class="w3-hover-white">Statement of Purpose</a></li>
+  
+  <li class="w3-hide-small w3-dropdown-hover">
+    <a href="javascript:void(0);" title="Notifications">Categories <i class="fa fa-caret-down"></i></a>     
+    <div class="w3-dropdown-content w3-white w3-card-4">
+      <a href="#">Nightlife</a>
+      <a href="#">Entertainment</a>
+      <a href="#">Dining</a>
+      <a href="#">Freddy's Ice Cream Shop</a>
+      <a href="#">Thien's Bungalo</a>
+      <a href="#">Ken's Taco Shack</a>
+      <a href="#">Christian's Party Store</a>
+      <a href="#">Zach's Crazy Churos</a>
+    </div>
+  </li>
+  
+  <li class="w3-hide-small w3-right"><a href="#" class="w3-hover-teal" title="Search"><i class="fa fa-search"></i></a></li>
+  <li class="w3-hide-small w3-right"><a href="http://localhost:5000/logout" class="w3-hover-white">Log Out</a></li>
+  <li class="w3-hide-small w3-right"><a href="#contact" class="w3-hover-white">Profile</a></li>
+  <li class="w3-hide-small w3-right"><a href="javascript:void(0);" class="w3-hover-white">Welcome {{username}}</a></li>
+ </ul>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+    <ul class="w3-navbar w3-left-align w3-theme">
+      <li><a href="#team">About Us</a></li>
+      <li><a href="#work">Contact Us</a></li>
+      <li><a href="#pricing">Purpose</a></li>
+      <li><a href="#">Search</a></li>
+      <li><a href="#contact">Log Out</a></li>
+      <li class="w3-dropdown-hover">
+      <a href="javascript:void(0);" title="Notifications">Categories <i class="fa fa-caret-down"></i></a>     
+      <div class="w3-dropdown-content w3-light-grey w3-card-4">
+        <a href="#">TACOS</a>
+        <a href="#">BURRITOS</a>
+        <a href="#">CASADILLAS</a>
+      </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Image Header -->
+<div class="w3-display-container w3-animate-opacity">
+  <img src="hankface.jpg" alt="OOPS" style="width:100%;min-height:350px;max-height:600px;">
+  <div class="w3-container w3-display-bottomright w3-margin-bottom">  
+    <button onclick="document.getElementById('mission').style.display='block'" class="w3-btn w3-xlarge w3-theme w3-hover-white" title="Source Code">BetaAggro Source Code</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="mission" class="w3-modal">
+  <div class="w3-modal-content w3-card-8 w3-animate-top">
+    <header class="w3-container w3-orange"> 
+      <span onclick="document.getElementById('mission').style.display='none'" class="w3-closebtn"><i class="fa fa-remove"></i></span>
+      <h4>Click below to see the source code for this website.</h4>
+      
+    </header>
+    <div class="w3-container">
+      <p><a class="w3-btn" href="https://www.github.com">Our Source Code</a></p>
+    </div>
+    
+  </div>
+</div>
+
+<form id="ratingsForm" action="http://localhost:5000/searchuser" method="POST">
+  <input type="text" maxlength="120" name="search" placeholder="Type here for tacos">
+  <input type="submit" class="w3-button w3-block w3-teal" value="search" />
+
+
+
+  
+  
+	  
+  
+
+
+</div>
+
+
+<div class="w3-container">
+	{% if found %}
+		{% for item in response %}
+			<div class="BusinessContainer">
+				<div class="BusinessImage">
+					<div class="w3-container">
+  						<div class="panel-group">
+    						<div class="panel panel-default">
+      							<div class="panel-heading">
+        							<h4 class="panel-title">
+          							<a data-toggle="collapse" href="#collapse1" ><img src={{ item["ratingImage"] }} style="float: left"  alt="OOPS" >
+          							<p> {{ item["name"] }} </p>
+									<img src={{ item["ratingImage"] }} style="float: left" />
+									<p> {{ item["reviewCount"] }} Reviews </p>
+									<p> {{ item["categories"][0]["category"] }} </p>
+									<div id="googleMap1" style="width:400px;height:300px;"></div>
+          							</a>
+        							</h4>
+      								</div>
+      								<div id="collapse1" class="panel-collapse collapse">
+        								<div class="panel-body" ><p>{{ item["location"] }}</p>
+										
+        									<p>{{ item["isClosed"] }}</p>
+            								<p>{{ item["phoneNumber"] }}</p>
+											<div class="stars">
+		<input type="radio" name="star" class="star-1" id="star-1" />
+		<label class="star-1" for="star-1">1</label>
+		<input type="radio" name="star" class="star-2" id="star-2" />
+		<label class="star-2" for="star-2">2</label>
+		<input type="radio" name="star" class="star-3" id="star-3" />
+		<label class="star-3" for="star-3">3</label>
+		<input type="radio" name="star" class="star-4" id="star-4" />
+		<label class="star-4" for="star-4">4</label>
+		<input type="radio" name="star" class="star-5" id="star-5" />
+		<label class="star-5" for="star-5">5</label>
+		<span></span>
+	</div>
+        								</div>
+        
+        
+      								</div>
+    							</div>
+  							</div>
+						</div>
+				</div>
+			</div>
+			<hr>
+					
+				
+		{% endfor %}
+	{% else %}
+		<h1 style="text-align: center;">BUSINESS NOT FOUND</h1>
+	{% endif %}
+</div>
+</form>
+
+<script>
+function myMap() {
+  var mapOptions1 = {
+    center: new google.maps.LatLng(51.508742,-0.120850),
+    zoom:9,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var mapOptions2 = {
+    center: new google.maps.LatLng(51.508742,-0.120850),
+    zoom:9,
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  };
+  var mapOptions3 = {
+    center: new google.maps.LatLng(51.508742,-0.120850),
+    zoom:9,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+  };
+  var mapOptions4 = {
+    center: new google.maps.LatLng(51.508742,-0.120850),
+    zoom:9,
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  };
+  var map1 = new google.maps.Map(document.getElementById("googleMap1"),mapOptions1);
+  var map2 = new google.maps.Map(document.getElementById("googleMap2"),mapOptions2);
+  var map3 = new google.maps.Map(document.getElementById("googleMap3"),mapOptions3);
+  var map4 = new google.maps.Map(document.getElementById("googleMap4"),mapOptions4);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzzuPt6Tql59-LIahJioMsDo9tLB5SgaY&callback=myMap"></script>
+</body>
+</html>
