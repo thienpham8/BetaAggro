@@ -91,6 +91,7 @@ class User(object):
 			return self.login(data, registered=True)
 		else:
 			print "User.register reporting here: data is none :("
+			return None
 			
 		# except:
 			# print "User.register FAIL " + "*"*20

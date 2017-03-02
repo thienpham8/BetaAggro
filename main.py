@@ -31,7 +31,13 @@ def load_user(user_id):
 @app.route('/')
 @app.route("/home")
 def homeguest():
-	return render_template("home.html")
+
+	err = request.args.get("error", "")
+
+	print "error: ", err
+	
+	return render_template("home.html", error=err)
+	
 	#on the homeguest.html file, form action = route method = name, for buttons
 	#create new user button is outside <form></form> and links to new user page
 
@@ -84,10 +90,14 @@ def login():
 	if request.method == "POST":
 	
 		usr = user.User()
-		usr.login(request.form)
-		flask_login.login_user(usr)
-		#do login shit
-		return redirect("/")		
+		success = usr.login(request.form)
+		
+		if success:
+			flask_login.login_user(usr)
+			return redirect("/")	
+		
+		else:
+			return redirect("/?error=Bad username/password.")
 		
 @app.route("/logout")
 def logout():
@@ -116,6 +126,7 @@ def register():
 			return redirect("/")
 		else:
 			print "registration failure."
+			return redirect("/?error=User already exists.")
 		# except:
 			# flash("Registration error.")
 			# print "registration fail"
