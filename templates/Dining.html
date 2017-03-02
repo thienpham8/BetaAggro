@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<style>
+.square-box{
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+    background: tan;
+}
+.square-box:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.square-content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: black;
+}
+.square-content div {
+   display: table;
+   width: 100%;
+   height: 100%;
+}
+.square-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: black
+}
+label{
+    display:inline-block;
+    width:100px;
+	padding-top:100px;
+}
+.my_text{
+position: absolute;
+left: 175px;
+top: 250px;
+font-size: 20px;
+}
+
+</style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body id="myPage">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <ul class="w3-navbar w3-theme-d2 w3-left-align">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  </li>
+  <li><a href="http://localhost:5000/homeuser" class="w3-white"><i class="fa fa-home w3-margin-right"></i>Beta Aggro Home</a></li>
+  <li class="w3-hide-small"><a href="https://www.google.com" class="w3-hover-white">About Us</a></li>
+  <li class="w3-hide-small"><a href="#work" class="w3-hover-white">Contact Us</a></li>
+  <li class="w3-hide-small"><a href="#pricing" class="w3-hover-white">Statement of Purpose</a></li>
+  
+  <li class="w3-hide-small w3-dropdown-hover">
+    <a href="javascript:void(0);" title="Notifications">Categories <i class="fa fa-caret-down"></i></a>     
+    <div class="w3-dropdown-content w3-white w3-card-4">
+      <a href="#">Nightlife</a>
+      <a href="#">Entertainment</a>
+      <a href="#">Dining</a>
+      <a href="#">Freddy's Ice Cream Shop</a>
+      <a href="#">Thien's Bungalo</a>
+      <a href="#">Ken's Taco Shack</a>
+      <a href="#">Christian's Party Store</a>
+      <a href="#">Zach's Crazy Churos</a>
+    </div>
+  </li>
+  
+  <li class="w3-hide-small w3-right"><a href="#" class="w3-hover-teal" title="Search"><i class="fa fa-search"></i></a></li>
+  <li class="w3-hide-small w3-right"><a href="http://localhost:5000/logout" class="w3-hover-white">Log Out</a></li>
+  <li class="w3-hide-small w3-right"><a href="#contact" class="w3-hover-white">Profile</a></li>
+  <li class="w3-hide-small w3-right"><a href="javascript:void(0);" class="w3-hover-white">Welcome {{username}}</a></li>
+ </ul>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+    <ul class="w3-navbar w3-left-align w3-theme">
+      <li><a href="#team">About Us</a></li>
+      <li><a href="#work">Contact Us</a></li>
+      <li><a href="#pricing">Purpose</a></li>
+      <li><a href="#">Search</a></li>
+      <li><a href="#contact">Log Out</a></li>
+      <li class="w3-dropdown-hover">
+      <a href="javascript:void(0);" title="Notifications">Categories <i class="fa fa-caret-down"></i></a>     
+      <div class="w3-dropdown-content w3-light-grey w3-card-4">
+        <a href="#">TACOS</a>
+        <a href="#">BURRITOS</a>
+        <a href="#">CASADILLAS</a>
+      </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div align="center"><br><br><br>
+<div style="color:#FFFFFF">
+		<h1>Dining</h1>
+	</div>
+<div style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
+  <img src='https://static.pexels.com/photos/169628/pexels-photo-169628.jpeg' style='width:100%;height:120%' alt='[]' />
+</div>
+
+	<div class='square-box'>
+    <div class='square-content'><div><span><table width=100% height=100%><tr><td width=50%>
+	<img src = 'https://s3-media3.fl.yelpcdn.com/bphoto/4IH5Bv21NwZTRhf8gaDcew/o.jpg' style='width:35%; height:35%'/><br>
+	<img src = 'https://s3-media2.fl.yelpcdn.com/bphoto/JeUqkHV0Za2ZLU7fpdd_9g/o.jpg' style='width:35%; height:35%'/><br>
+	<img src = 'https://s3-media4.fl.yelpcdn.com/bphoto/7sOn8_P7Hxb0ZkM55tz3mg/o.jpg' style='width:35%; height:35%'/><br>
+	<img src = 'https://s3-media2.fl.yelpcdn.com/bphoto/bXCW8so14ULdu7GbivQzPg/o.jpg' style='width:35%; height:10%'/><br>
+	<img src = 'https://s3-media4.fl.yelpcdn.com/bphoto/GqjWlDfG8dW9ovZqv6-wwg/o.jpg' style='width:35%; height:35%'/><br>
+	
+	
+	</td>
+	<td width=50%>
+	
+	<ul>
+	<div class="my_text">
+		<li><h2>Our Favorite Dining Areas in the Bay Area</h2><br><br>
+		<li><a href="https://www.yelp.com/biz/frances-san-francisco?osq=Restaurants"> Frances - American </a></li>
+		<li><a href="https://www.yelp.com/biz/liholiho-yacht-club-san-francisco-2?osq=Restaurants"> Liholiho Yacht Club - American/Seafood</a></li>
+		<li><a href="https://www.yelp.com/biz/dip-san-francisco-3?osq=Restaurants"> Dip - Sandwiches/French </a></li>
+		<li><a href="https://www.yelp.com/biz/nopa-san-francisco?osq=Restaurants"> Nopa - Modern European </a></li>
+		<li><a href="https://www.yelp.com/biz/lol%C3%B3-san-francisco-4?osq=Restaurants"> Lolo - Tapas/Small Plates</a></li>
+		<li><a href="https://www.yelp.com/biz/state-bird-provisions-san-francisco?osq=Restaurants"> State Bird Provisions - Tapas/American </a></li>
+		<li><a href="https://www.yelp.com/biz/tacorea-san-francisco?osq=Restaurants"> Tacorea - Mexican/Korean </a></li>
+		<li><a href="https://www.yelp.com/biz/surisan-san-francisco?osq=Restaurants"> Surisan - Korean/American </a></li>
+		<li><a href="https://www.yelp.com/biz/souvla-san-francisco-3?osq=Restaurants"> Souvla - Mediterranean/Greek </a></li>
+		<li><a href="https://www.yelp.com/biz/ozaoza-san-francisco?osq=Restaurants"> OzaOza - Japanese </a></li>
+		</div>
+	</ul>
+	
+</div>
+	</td></tr></table></span></div></div>
+	
+	</div>
+	
+</div>
+
+
+
+
+</html>

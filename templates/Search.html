@@ -22,7 +22,6 @@ table {
 	border: 1px solid black;
 	text-align: center;
 }
-
 td {
 	padding: 15px;
 	text-align: center;
@@ -53,6 +52,10 @@ input[type=text]:focus {
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body id="myPage">
 
 
@@ -142,11 +145,30 @@ input[type=text]:focus {
 		{% for item in response %}
 			<div class="BusinessContainer">
 				<div class="BusinessImage">
-					<img src={{ item["imageURL"] }} style="float: left;" />
-					<p> {{ item["name"] }} </p>
-					<img src={{ item["ratingImage"] }} style="float: left" />
-					<p> {{ item["reviewCount"] }} Reviews </p>
-					<p> {{ item["categories"][0]["category"] }} </p>
+					<div class="w3-container">
+  						<div class="panel-group">
+    						<div class="panel panel-default">
+      							<div class="panel-heading">
+        							<h4 class="panel-title">
+          							<a data-toggle="collapse" href="#collapse1" ><img src={{ item["ratingImage"] }} style="float: left"  alt="OOPS" >
+          							<p> {{ item["name"] }} </p>
+									<img src={{ item["ratingImage"] }} style="float: left" />
+									<p> {{ item["reviewCount"] }} Reviews </p>
+									<p> {{ item["categories"][0]["category"] }} </p>
+          							</a>
+        							</h4>
+      								</div>
+      								<div id="collapse1" class="panel-collapse collapse">
+        								<div class="panel-body" ><p>{{ item["location"] }}</p>
+        									<p>{{ item["isClosed"] }}</p>
+            								<p>{{ item["phoneNumber"] }}</p>
+        								</div>
+        
+        
+      								</div>
+    							</div>
+  							</div>
+						</div>
 				</div>
 			</div>
 			<hr>
@@ -157,6 +179,5 @@ input[type=text]:focus {
 		<h1 style="text-align: center;">BUSINESS NOT FOUND</h1>
 	{% endif %}
 </div>
-
 </body>
 </html>
