@@ -210,11 +210,11 @@ input[type=text]:focus {
 
 <script>
 function myMap() {
-  var myCenter = new google.maps.LatLng(response[0]["latitude"],response[0]["longitude"]);
-  var myCenter1 = new google.maps.LatLng(response[1]["latitude"],response[1]["longitude"]);
-  var myCenter2 = new google.maps.LatLng(response[2]["latitude"],response[2]["longitude"]);
-  var myCenter3 = new google.maps.LatLng(response[3]["latitude"],response[3]["longitude"]);
-  var myCenter4 = new google.maps.LatLng(response[4]["latitude"],response[4]["longitude"]);
+  var myCenter = new google.maps.LatLng({{response[0]["latitude"]}},{{response[0]["longitude"]}});
+  var myCenter1 = new google.maps.LatLng({{response[1]["latitude"]}},{{response[1]["longitude"]}});
+  var myCenter2 = new google.maps.LatLng({{response[2]["latitude"]}},{{response[2]["longitude"]}});
+  var myCenter3 = new google.maps.LatLng({{response[3]["latitude"]}},{{response[3]["longitude"]}});
+  var myCenter4 = new google.maps.LatLng({{response[4]["latitude"]}},{{response[4]["longitude"]}});
   var mapCanvas = document.getElementById("map");
   var mapOptions = {center: myCenter1, zoom: 5};
   var map = new google.maps.Map(mapCanvas, mapOptions);
