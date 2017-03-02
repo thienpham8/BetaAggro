@@ -49,6 +49,7 @@ input[type=text]:focus {
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -132,12 +133,19 @@ input[type=text]:focus {
     
   </div>
 </div>
-<div>
-<form action="http://localhost:5000/searchuser" method="POST">
-  <input type="text" maxlength="120" name="searchline" placeholder="Type here for tacos">
+
+<form id="ratingsForm" action="http://localhost:5000/searchuser" method="POST">
+  <input type="text" maxlength="120" name="search" placeholder="Type here for tacos">
   <input type="submit" class="w3-button w3-block w3-teal" value="search" />
-</form>
-</div>
+
+
+
+  
+  
+	  
+  
+
+
 
 
 <div class="w3-container">
@@ -155,13 +163,30 @@ input[type=text]:focus {
 									<img src={{ item["ratingImage"] }} style="float: left" />
 									<p> {{ item["reviewCount"] }} Reviews </p>
 									<p> {{ item["categories"][0]["category"] }} </p>
+
+
+									
           							</a>
         							</h4>
       								</div>
       								<div id="collapse1" class="panel-collapse collapse">
         								<div class="panel-body" ><p>{{ item["location"] }}</p>
+										
         									<p>{{ item["isClosed"] }}</p>
             								<p>{{ item["phoneNumber"] }}</p>
+											<div class="stars">
+		<input type="radio" name="star" class="star-1" id="star-1" />
+		<label class="star-1" for="star-1">1</label>
+		<input type="radio" name="star" class="star-2" id="star-2" />
+		<label class="star-2" for="star-2">2</label>
+		<input type="radio" name="star" class="star-3" id="star-3" />
+		<label class="star-3" for="star-3">3</label>
+		<input type="radio" name="star" class="star-4" id="star-4" />
+		<label class="star-4" for="star-4">4</label>
+		<input type="radio" name="star" class="star-5" id="star-5" />
+		<label class="star-5" for="star-5">5</label>
+		<span></span>
+	</div>
         								</div>
         
         
@@ -179,5 +204,33 @@ input[type=text]:focus {
 		<h1 style="text-align: center;">BUSINESS NOT FOUND</h1>
 	{% endif %}
 </div>
+</form>
+									
+<div id="map" style="width:100%;height:500px"></div>
+
+<script>
+function myMap() {
+  var myCenter = new google.maps.LatLng(response[0]["latitude"],response[0]["longitude"]);
+  var myCenter1 = new google.maps.LatLng(response[1]["latitude"],response[1]["longitude"]);
+  var myCenter2 = new google.maps.LatLng(response[2]["latitude"],response[2]["longitude"]);
+  var myCenter3 = new google.maps.LatLng(response[3]["latitude"],response[3]["longitude"]);
+  var myCenter4 = new google.maps.LatLng(response[4]["latitude"],response[4]["longitude"]);
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {center: myCenter1, zoom: 5};
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+  var marker = new google.maps.Marker({position:myCenter});
+  var marker1 = new google.maps.Marker({position:myCenter1});
+  var marker2 = new google.maps.Marker({position:myCenter2});
+  var marker3 = new google.maps.Marker({position:myCenter3});
+  var marker4 = new google.maps.Marker({position:myCenter4});
+  marker.setMap(map);
+  marker1.setMap(map);
+  marker2.setMap(map);
+  marker3.setMap(map);
+  marker4.setMap(map);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzzuPt6Tql59-LIahJioMsDo9tLB5SgaY&callback=myMap"></script>
+
 </body>
 </html>
