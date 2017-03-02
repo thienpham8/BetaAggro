@@ -66,48 +66,65 @@ input[type=text]:focus {
   <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
     <a class="w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   </li>
-  <li><a href="http://localhost:5000/homeuser" class="w3-white"><i class="fa fa-home w3-margin-right"></i>Beta Aggro Home</a></li>
-  <li class="w3-hide-small"><a href="https://www.google.com" class="w3-hover-white">About Us</a></li>
-  <li class="w3-hide-small"><a href="#work" class="w3-hover-white">Contact Us</a></li>
-  <li class="w3-hide-small"><a href="#pricing" class="w3-hover-white">Statement of Purpose</a></li>
+  <li><a href="http://localhost:5000/home" class="w3-white"><i class="fa fa-home w3-margin-right"></i>Beta Aggro Home</a></li>
+  <li class="w3-hide-small"><a href="http://localhost:5000/aboutus" class="w3-hover-white">About Us</a></li>
+  <li class="w3-hide-small"><a href="http://localhost:5000/contactus" class="w3-hover-white">Contact Us</a></li>
+  <li class="w3-hide-small"><a href="http://localhost:5000/porpoise" class="w3-hover-white">Statement of Porpoise</a></li>
   
   <li class="w3-hide-small w3-dropdown-hover">
     <a href="javascript:void(0);" title="Notifications">Categories <i class="fa fa-caret-down"></i></a>     
     <div class="w3-dropdown-content w3-white w3-card-4">
-      <a href="#">Nightlife</a>
-      <a href="#">Entertainment</a>
-      <a href="#">Dining</a>
-      <a href="#">Freddy's Ice Cream Shop</a>
-      <a href="#">Thien's Bungalo</a>
-      <a href="#">Ken's Taco Shack</a>
-      <a href="#">Christian's Party Store</a>
-      <a href="#">Zach's Crazy Churos</a>
+      <a href="http://localhost:5000/nightlife">Nightlife</a>
+      <a href="http://localhost:5000/entertainment">Entertainment</a>
+      <a href="http://localhost:5000/dining">Dining</a>
+      <a href="http://localhost:5000/aboutus">Freddy's Ice Cream Shop</a>
+      <a href="http://localhost:5000/aboutus">Thien's Bungalo</a>
+      <a href="http://localhost:5000/aboutus">Ken's Taco Shack</a>
+      <a href="http://localhost:5000/aboutus">Christian's Party Store</a>
+      <a href="http://localhost:5000/aboutus">Zach's Crazy Churos</a>
     </div>
   </li>
   
-  <li class="w3-hide-small w3-right"><a href="#" class="w3-hover-teal" title="Search"><i class="fa fa-search"></i></a></li>
-  <li class="w3-hide-small w3-right"><a href="http://localhost:5000/logout" class="w3-hover-white">Log Out</a></li>
-  <li class="w3-hide-small w3-right"><a href="#contact" class="w3-hover-white">Profile</a></li>
-  <li class="w3-hide-small w3-right"><a href="javascript:void(0);" class="w3-hover-white">Welcome {{username}}</a></li>
+  <li class="w3-hide-small w3-right"><a href="http://localhost:5000/searchuser" class="w3-hover-teal" title="Search"><i class="fa fa-search"></i></a></li>
+  {% if current_user.is_authenticated %}
+		<li class="w3-hide-small w3-right"><a href="http://localhost:5000/logout" class="w3-hover-white">Logout</a></li>
+   {% else %}
+		<li class="w3-hide-small w3-right"><a href="http://localhost:5000/login" class="w3-hover-white">Login</a></li>
+   {% endif %}
+  <li class="w3-hide-small w3-right">
+	<a href="javascript:void(0);" class="w3-hover-white">
+		{% if current_user.is_authenticated %}
+			Welcome, {{ current_user.firstname }}!
+		{% else %}
+			Welcome, Guest.
+		{% endif %}
+	</a>
+  </li>
  </ul>
 
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
-    <ul class="w3-navbar w3-left-align w3-theme">
-      <li><a href="#team">About Us</a></li>
-      <li><a href="#work">Contact Us</a></li>
-      <li><a href="#pricing">Purpose</a></li>
-      <li><a href="#">Search</a></li>
-      <li><a href="#contact">Log Out</a></li>
-      <li class="w3-dropdown-hover">
-      <a href="javascript:void(0);" title="Notifications">Categories <i class="fa fa-caret-down"></i></a>     
-      <div class="w3-dropdown-content w3-light-grey w3-card-4">
-        <a href="#">TACOS</a>
-        <a href="#">BURRITOS</a>
-        <a href="#">CASADILLAS</a>
-      </div>
-      </li>
-    </ul>
+  
+</div>
+
+<!-- Image Header -->
+<div class="w3-display-container w3-animate-opacity">
+  <img src="hankface.jpg" alt="OOPS" style="width:100%;min-height:350px;max-height:600px;">
+  <div class="w3-container w3-display-bottomright w3-margin-bottom">  
+    <button onclick="document.getElementById('mission').style.display='block'" class="w3-btn w3-xlarge w3-theme w3-hover-white" title="Source Code">BetaAggro Source Code</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="mission" class="w3-modal">
+  <div class="w3-modal-content w3-card-8 w3-animate-top">
+    <header class="w3-container w3-orange"> 
+      <span onclick="document.getElementById('mission').style.display='none'" class="w3-closebtn"><i class="fa fa-remove"></i></span>
+      <h4>Click below to see the source code for this website.</h4>
+      
+    </header>
+    <div class="w3-container">
+      <p><a class="w3-btn" href="https://www.github.com">Our Source Code</a></p>
+    </div>
+    
   </div>
 </div>
 
@@ -158,7 +175,7 @@ input[type=text]:focus {
     						<div class="panel panel-default">
       							<div class="panel-heading">
         							<h4 class="panel-title">
-          							<a data-toggle="collapse" href="#collapse1" ><img src={{ item["ratingImage"] }} style="float: left"  alt="OOPS" >
+          							<a data-toggle="collapse" href="#collapse1" ><img src={{ item["imageURL"] }} style="float: left"  alt="OOPS" >
           							<p> {{ item["name"] }} </p>
 									<img src={{ item["ratingImage"] }} style="float: left" />
 									<p> {{ item["reviewCount"] }} Reviews </p>

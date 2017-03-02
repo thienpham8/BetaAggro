@@ -69,104 +69,10 @@ input[type=text]:focus {
   </li>
  </ul>
 
+  
 </div>
-
-<!-- Image Header -->
-<div class="w3-display-container w3-animate-opacity">
-  <img src="hankface.jpg" alt="OOPS" style="width:100%;min-height:350px;max-height:600px;">
-  <div class="w3-container w3-display-bottomright w3-margin-bottom">  
-    <button onclick="document.getElementById('mission').style.display='block'" class="w3-btn w3-xlarge w3-theme w3-hover-white" title="Source Code">BetaAggro Source Code</button>
-  </div>
-</div>
-
-<!-- Modal -->
-<div id="mission" class="w3-modal">
-  <div class="w3-modal-content w3-card-8 w3-animate-top">
-    <header class="w3-container w3-orange"> 
-      <span onclick="document.getElementById('mission').style.display='none'" class="w3-closebtn"><i class="fa fa-remove"></i></span>
-      <h4>Click below to see the source code for this website.</h4>
-      
-    </header>
-    <div class="w3-container">
-      <p><a class="w3-btn" href="https://www.github.com">Our Source Code</a></p>
-    </div>
-    
-  </div>
-</div>
-
-
-<!-- Team Container -->
-<div class="w3-container w3-padding-64 w3-center" id="team">
-<h1>The Beta Aggro Development Team </h1>
-<p>(please hire us...please)</p>
-
-<div class="w3-row"><br>
-
-<div class="w3-quarter">
-  <img src="/resources/cs.jpeg" alt="dude" style="width:45%" class="w3-round w3-hover-opacity">
-  <h3>Christian Salinas</h3>
-  <p>Graphical Designer and Tester, actually the POTUS</p>
-</div>
-
-<div class="w3-quarter">
-  <img src="/resources/kk.jpg" alt="dude" style="width:45%" class="w3-round w3-hover-opacity">
-  <h3>Ken Koltermann</h3>
-  <p>Lead Front-end Designer, professional eater</p>
-</div>
-
-<div class="w3-quarter">
-  <img src="/resources/tp.jpg" alt="dude" style="width:45%" class="w3-round w3-hover-opacity">
-  <h3>Thien Pham</h3>
-  <p>Front End Designer, Tester, and rides horses</p>
-</div>
-
-<div class="w3-quarter">
-  <img src="/resources/zs.jpg" alt="dude" style="width:45%" class="w3-round w3-hover-opacity">
-  <h3>Zac Smith</h3>
-  <p>Lead Back-End Designer,  owns his own lighbulb brand</p>
-</div>
-
-
-
-</div>
-<div class="w3-row"><br>
-<div class="w3-quarter">
-  <img src="/resources/ff.jpg" alt="dude" style="width:45%" class="w3-round w3-hover-opacity">
-  <h3>Freddy Flores</h3>
-  <p>Back-end Designer, part time cake baker</p>
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
- 
-<!-- Google Maps -->
-<div id="googleMap" style="width:100%;height:420px;"></div>
-<script>
-function myMap()
-{
-  myCenter=new google.maps.LatLng(37.65694,-122.05778 );
-  var mapOptions= {
-    center:myCenter,
-    zoom:12, scrollwheel: false, draggable: false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-
-  var marker = new google.maps.Marker({
-    position: myCenter,
-  });
-  marker.setMap(map);
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzzuPt6Tql59-LIahJioMsDo9tLB5SgaY&callback=myMap"></script>
-
+<br><br> 
+<img src="/resources/porpoise.jpg" style="height:200%;width:200%;"/>
 
 </body>
 </html>

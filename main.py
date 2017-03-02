@@ -29,8 +29,9 @@ def load_user(user_id):
 
 
 @app.route('/')
+@app.route("/home")
 def homeguest():
-	return render_template("homeguest.html")
+	return render_template("home.html")
 	#on the homeguest.html file, form action = route method = name, for buttons
 	#create new user button is outside <form></form> and links to new user page
 
@@ -43,7 +44,7 @@ def homeuser():
 		accept = db.checkUserPassword(username,password)
 		if accept:
 			flash('You are now logged in.', 'success')
-			return render_template("homeuser.html",username)
+			return render_template("home.html",username)
 			#logout button links to homeguest
 		else:
 			flash('Login failed', 'Error')
@@ -51,7 +52,7 @@ def homeuser():
 
 #TODO: K.KOLTERMANN: both login and search are in the same form, need to fix
 #2/12/17: K.Koltermann: actually its okay
-@app.route('/searchuser', methods = ["POST"])
+@app.route('/searchuser', methods = ["POST", "GET"])
 def searchu():
 	if request.method == 'POST':
 		criteria = ("name", request.form['searchline'])
@@ -70,6 +71,9 @@ def searchu():
 		else:
 			return render_template("search.html", found = False, response = "Business Not Found")
 			
+	else:
+		return render_template("home.html")
+			
 			
 @app.route('/login', methods= ["POST", "GET"])
 def login():
@@ -84,6 +88,12 @@ def login():
 		flask_login.login_user(usr)
 		#do login shit
 		return redirect("/")		
+		
+@app.route("/logout")
+def logout():
+
+	flask_login.logout_user()
+	return redirect("/")
 	
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -113,6 +123,34 @@ def register():
 			# print sys.exc_info()[1]
 			# print sys.exc_info()[2]
 			# return redirect("/")
+			
+@app.route('/aboutus')
+def aboutUs():
+	return render_template("AboutUs.html")
+
+@app.route('/contactus')
+def contactUs():
+	return render_template("contactus.html")
+
+@app.route('/dining')
+def dining():
+	return render_template("Dining.html")
+	
+@app.route('/entertainment')
+def entertainment():
+	return render_template("Entertainment.html")
+
+@app.route('/nightlife')
+def nightlife():
+	return render_template("Nightlife.html")
+
+@app.route('/porpoise')
+def porpoise():
+	return render_template("porpoise.html")
+	
+	
+	
+# ---- #	
 					
 @app.route('/searchguest',methods = ["POST"])
 def searchg():
@@ -138,10 +176,6 @@ def userprofile():
 		result = request.form
 		db.updateUser(result)
 		return render_template("homeuser.html")
-	
-@app.route('/aboutus')
-def aboutUs():
-	return render_template("AboutUs.html")
 
 @app.errorhandler(404)
 def bad_url(exc):
