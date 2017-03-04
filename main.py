@@ -33,8 +33,6 @@ def load_user(user_id):
 def homeguest():
 
 	err = request.args.get("error", "")
-
-	print "error: ", err
 	
 	return render_template("home.html", error=err)
 	

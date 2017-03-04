@@ -105,28 +105,7 @@ input[type=text]:focus {
   
 </div>
 
-<!-- Image Header -->
-<div class="w3-display-container w3-animate-opacity">
-  <img src="hankface.jpg" alt="OOPS" style="width:100%;min-height:350px;max-height:600px;">
-  <div class="w3-container w3-display-bottomright w3-margin-bottom">  
-    <button onclick="document.getElementById('mission').style.display='block'" class="w3-btn w3-xlarge w3-theme w3-hover-white" title="Source Code">BetaAggro Source Code</button>
-  </div>
-</div>
 
-<!-- Modal -->
-<div id="mission" class="w3-modal">
-  <div class="w3-modal-content w3-card-8 w3-animate-top">
-    <header class="w3-container w3-orange"> 
-      <span onclick="document.getElementById('mission').style.display='none'" class="w3-closebtn"><i class="fa fa-remove"></i></span>
-      <h4>Click below to see the source code for this website.</h4>
-      
-    </header>
-    <div class="w3-container">
-      <p><a class="w3-btn" href="https://www.github.com">Our Source Code</a></p>
-    </div>
-    
-  </div>
-</div>
 
 <!-- Image Header -->
 <div class="w3-display-container w3-animate-opacity">
@@ -152,9 +131,9 @@ input[type=text]:focus {
 </div>
 
 <form id="ratingsForm" action="http://localhost:5000/searchuser" method="POST">
-  <input type="text" maxlength="120" name="search" placeholder="Type here for tacos">
+  <input type="text" maxlength="120" name="searchline" placeholder="Type here for tacos">
   <input type="submit" class="w3-button w3-block w3-teal" value="search" />
-
+</form>
 
 
   
@@ -221,7 +200,6 @@ input[type=text]:focus {
 		<h1 style="text-align: center;">BUSINESS NOT FOUND</h1>
 	{% endif %}
 </div>
-</form>
 									
 <div id="map" style="width:100%;height:500px"></div>
 
