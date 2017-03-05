@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <title>Homeuser</title>
+<head>
 <style> 
 input[type=text] {
     width: 100%;
@@ -9,7 +10,6 @@ input[type=text] {
     border-radius: 4px;
     font-size: 16px;
     background-color: orange;
-    background-image: url('hankface.jpg');
     background-position: 10px 10px; 
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
@@ -24,7 +24,20 @@ input[type=text]:focus {
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<body id="myPage">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	var img_array = [1, 2, 3, 4, 5, 6, 7];
+	var newIndex = 0,
+	newIndex = Math.floor(Math.random() * 10) % img_array.length;
+	$('body').css('backgroundImage', 'url(/resources/backgroundimages/' + img_array[newIndex] + '.jpg)');
+});
+</script>
+
+</head>
+
+<body id="myPage" style="background-size: cover;text-align:center;background-image: url('/resources/backgroundimages/1.jpg')">
 
 
 <!-- Navbar -->
@@ -78,8 +91,8 @@ input[type=text]:focus {
 	<div style="float:right"><h3 style="color:red">{{ error }}</h3></div>
 	
 {% endif %}
+
 <div class="w3-display-container w3-animate-opacity">
-  <img src="/resources/balogo.png" alt="OOPS" style="width:100%;min-height:350px;max-height:600px;">
   <div class="w3-container w3-display-bottomright w3-margin-bottom">  
     <button onclick="document.getElementById('mission').style.display='block'" class="w3-btn w3-xlarge w3-theme w3-hover-white" title="Source Code">BetaAggro Source Code</button>
   </div>
@@ -99,7 +112,7 @@ input[type=text]:focus {
     
   </div>
 </div>
-<div>
+<div style="width: 600px;height: 50px;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;">
 <form action="http://localhost:5000/searchuser" method="POST">
   <input type="text" maxlength="120" name="searchline" placeholder="Enter text here">
   <input type="text" maxlength="120" name="zipcode" placeholder="Enter zipcode here">
