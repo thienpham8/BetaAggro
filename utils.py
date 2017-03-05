@@ -69,7 +69,7 @@ def get_zipcode_from_address(string):
                 break
         else:
             counter = 0
-            zipcode = []a
+            zipcode = []
     return "".join(zipcode)
 
 
