@@ -218,7 +218,7 @@ function myMap() {
 	  var myCenter4 = new google.maps.LatLng({{response[4]["location"][0]["latitude"]}},{{response[4]["location"][0]["longitude"]}});
 	*/
 	var mapCanvas = document.getElementById("map");
-	var mapOptions = {center: myCenter{{length-1}}, zoom: 5};
+	var mapOptions = {center: myCenter{{length-1}}, zoom: 14};
 	var map = new google.maps.Map(mapCanvas, mapOptions);
 	
 {% set i = length %}
