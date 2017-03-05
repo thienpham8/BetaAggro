@@ -9,6 +9,7 @@ import yelp
 import user
 import flask_login
 import sys
+import google
 
 #app = Flask(__name__)
 app = Flask(__name__, static_url_path="")
@@ -63,15 +64,24 @@ def searchu():
 		y = yelp.YelpAPI()
 		connection = dbConnector.Connector(verbose=False)
 		
-		data = connection.select(criteria, limit=10)
 		
-		if len(data) < 10:
-			y.search(criteria[1], limit=10, addToDB=True, verbose=False)
+		data = connection.select(criteria, limit=5)
+		
+		if len(data) < 5:
+			y.search(criteria[1], limit=5, addToDB=True, verbose=False)
 		connection = dbConnector.Connector(verbose=False)
-		data = connection.select(criteria, limit=10)
+		data = connection.select(criteria, limit=5)
 		
-		if data:
-			return render_template("search.html", found = True, response = data)
+		if data:	
+			print "Data elements: ", len(data)
+			# ADD GOOGLE RATINGS
+			g = google.GoogleAPI()
+			for business in data:
+				searchString = business["name"] + " " + business["location"][0]["address"]
+				rating = g.getRating(searchString)
+				business["google"] = rating
+				
+			return render_template("search.html", found = True, response = data, length= len(data))
 		else:
 			return render_template("search.html", found = False, response = "Business Not Found")
 			

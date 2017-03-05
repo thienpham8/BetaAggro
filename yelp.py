@@ -17,7 +17,7 @@ import dbConnector
 
 
 class YelpAPI(object):
-	"""This class handles everything with the Yelp API"""
+	"""This class handles the Yelp API"""
 
 	def __init__(self):
 		"""Initialize some class attributes"""
