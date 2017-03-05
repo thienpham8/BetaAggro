@@ -109,7 +109,7 @@ input[type=text]:focus {
 
 <!-- Image Header -->
 <div class="w3-display-container w3-animate-opacity">
-  <img src="hankface.jpg" alt="OOPS" style="width:100%;min-height:350px;max-height:600px;">
+  <img src="/resources/balogo.png" alt="OOPS" style="width:100%;min-height:350px;max-height:600px;">
   <div class="w3-container w3-display-bottomright w3-margin-bottom">  
     <button onclick="document.getElementById('mission').style.display='block'" class="w3-btn w3-xlarge w3-theme w3-hover-white" title="Source Code">BetaAggro Source Code</button>
   </div>
@@ -132,6 +132,7 @@ input[type=text]:focus {
 
 <form id="ratingsForm" action="http://localhost:5000/searchuser" method="POST">
   <input type="text" maxlength="120" name="searchline" placeholder="Type here for tacos">
+  <input type="text" maxlength="120" name="zipcode" placeholder="Enter zipcode">
   <input type="submit" class="w3-button w3-block w3-teal" value="search" />
 </form>
 
