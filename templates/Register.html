@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html>
 <style>
-
-
-
 label{
     display:inline-block;
     width:100px;
 	padding-top:100px;
 }
-
-
 </style>
 
 <meta charset="UTF-8">
@@ -70,22 +65,27 @@ label{
 <h2 align="center">Register Page</h2>
 <br>
 
-	<form action= "/register", method="post">
-		
-		Username:<br>
-		<input type="text" name="Username" placeholder="Username"><br>
+	
+    <div class="w3-row-padding">
+  <div class="w3-third w3-orange ">
+    <label><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></label> 
+  </div>
+  <div class="w3-third ">
+  <form action= "/register", method="post">
+    Username:<br>
+		<input class="w3-input" type="text" name="Username"  placeholder="Username"><br>
 		Password:<br>
-		<input type="password" name="Password" placeholder="Password"><br>
+		<input class="w3-input" type="password" name="Password" placeholder="Password"><br>
 		Email:<br>
-		<input type="text" name="Email" placeholder="Email"><br>
+		<input class="w3-input" type="text" name="Email" placeholder="Email"><br>
 		
 		
 		First Name:<br>
-		<input type="text" name="First name" placeholder="First name"><br>
+		<input class="w3-input" type="text" name="First name" placeholder="First name"><br>
 		Last Name:<br>
-		<input type="text" name="Last name" placeholder="Last name"><br>
+		<input class="w3-input" type="text" name="Last name" placeholder="Last name"><br>
 		Date of Birth:<br>
-		<select name="DOBMonth">
+		<select class="w3-select" name="DOBMonth">
 	<option> - Month - </option>
 	<option value="January">January</option>
 	<option value="February">February</option>
@@ -101,7 +101,7 @@ label{
 	<option value="December">December</option>
 </select>
 
-<select name="DOBDay">
+<select class="w3-select" name="DOBDay">
 	<option> - Day - </option>
 	<option value="01">1</option>
 	<option value="02">2</option>
@@ -136,7 +136,7 @@ label{
 	<option value="31">31</option>
 </select>
 
-<select name="DOBYear">
+<select class="w3-select" name="DOBYear">
 	<option> - Year - </option>
 	<option value="2016">2016</option>
 	<option value="2015">2015</option>
@@ -211,14 +211,21 @@ label{
 	
 	</select><br>
 		Zip Code:<br>
-		<input type="text" name="Zip code" placeholder="Zip code"><br>
+		<input class="w3-input" type="text" name="Zip code" placeholder="Zip code"><br>
 		Gender:<br>
-		<input type="radio" name="gender" value="male" checked> Male<br>
-		<input type="radio" name="gender" value="female"> Female<br>
-		<input type="radio" name="gender" value="other"> Other<br>
+		<input class="w3-radio" type="radio" name="gender" value="male" checked> Male<br>
+		<input class="w3-radio" type="radio" name="gender" value="female"> Female<br>
+		<input class="w3-radio" type="radio" name="gender" value="other"> Other<br>
 		
-		<input type="submit" value="Register">
+		<input class="w3-button w3-teal"  type="submit" value="Register">
 		
 	</form>
 </div>
+<div class="w3-third w3-orange">
+    <label><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></label>  
+  </div>
+  </div>
+  
+</div>
+		
 </html>
