@@ -61,16 +61,17 @@ def homeuser():
 def searchu():
 	if request.method == 'POST':
 		criteria = ("name", request.form['searchline'])
+		loc = request.form['zipcode']
 		y = yelp.YelpAPI()
 		connection = dbConnector.Connector(verbose=False)
 		
 		
-		data = connection.select(criteria, limit=5)
+		data = connection.select(criteria, limit=5, location=loc)
 		
 		if len(data) < 5:
-			y.search(criteria[1], limit=5, addToDB=True, verbose=False)
+			y.search(term=criteria[1], location=loc, limit=5, addToDB=True, verbose=False)
 		connection = dbConnector.Connector(verbose=False)
-		data = connection.select(criteria, limit=5)
+		data = connection.select(criteria, limit=5, location=loc)
 		
 		if data:	
 			print "Data elements: ", len(data)
