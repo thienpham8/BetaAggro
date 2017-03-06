@@ -182,9 +182,7 @@ class Connector(object):
 	
 	def select(self, criteria, table="yelp", limit=1, location=""):
 		"""This will select from table WHERE criteria[0] LIKE criteria[1]"""
-		
-		print "location: ", location
-		
+				
 		if location:
 			query = ("SELECT * FROM yelp AS Y, categories AS C, location AS L "
 							"WHERE Y.uniqueName = C.business "
@@ -194,7 +192,6 @@ class Connector(object):
 							"GROUP BY uniqueName "
 							"LIMIT {};".format(limit))
 				
-			print query % (criteria[1], criteria[1], location)
 							
 			self.cursor.execute(query, ("%" + criteria[1] + "%", "%" + criteria[1] + "%", location))
 			
@@ -209,7 +206,6 @@ class Connector(object):
 		
 		# query = ("SELECT * FROM {} WHERE {} LIKE %s LIMIT {}".format(table, criteria[0], limit))
 		businesses = self.cursor.fetchall()
-		print "businesses: ", businesses
 		
 		for b in businesses:
 			queryCategories = ("SELECT * FROM categories WHERE business LIKE %s")

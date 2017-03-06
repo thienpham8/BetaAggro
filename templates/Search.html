@@ -49,7 +49,7 @@ input[type=text]:focus {
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="/resources/style.css" />
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -156,7 +156,7 @@ input[type=text]:focus {
     						<div class="panel panel-default">
       							<div class="panel-heading">
         							<h4 class="panel-title">
-          							<a data-toggle="collapse" href="#{{item["name"]}}" ><img src={{ item["imageURL"] }} style="float: left"  alt="OOPS" >
+          							<a data-toggle="collapse" href="#{{ item['uniqueName'] }}" ><img src={{ item["imageURL"] }} style="float: left"  alt="OOPS" >
           							<p> {{ item["name"] }} </p>
 									<img src={{ item["ratingImage"] }} style="float: left" />
 									<p> {{ item["reviewCount"] }} Reviews </p>
@@ -168,7 +168,7 @@ input[type=text]:focus {
           							</a>
         							</h4>
       								</div>
-      								<div id="{{item["name"]}}" class="panel-collapse collapse">
+      								<div id="{{ item['uniqueName'] }}" class="panel-collapse collapse">
         								<div class="panel-body" ><p>{{ item["location"] }}</p>
 										
         									<p>{{ item["isClosed"] }}</p>
