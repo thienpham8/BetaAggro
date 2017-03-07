@@ -3,7 +3,7 @@ body {
   padding: 50px;
 }
 form .stars {
-  background: url("/resources/stars3.fw.png") repeat-x 0 0;
+  background: url("stars3.fw.png") repeat-x 0 0;
   width: 150px;
   margin: 0 auto;
 }
@@ -66,7 +66,7 @@ form .stars span {
   top: 0;
   left: 0;
   height: 30px;
-  background: url("/resources/stars3.fw.png") repeat-x 0 -60px;
+  background: url("stars3.fw.png") repeat-x 0 -60px;
   -webkit-transition: -webkit-width 0.5s;
   -moz-transition: -moz-width 0.5s;
   -ms-transition: -ms-width 0.5s;
