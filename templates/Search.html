@@ -190,10 +190,12 @@ input[type=text]:focus {
 											<hr>
 											<div style="background-color:#fff;">
 											<img src="/resources/google.png" style="height:75px; width:150px; padding-bottom:15px">
-											<p> Review from {{item["googleReview"][0]["author_name"]}} on {{item["googleReview"][0]["time"]}}</p>
-											<img src="{{item['googleReview'][0]['profile_photo_url']}}" style="float:left;">
-											<p><h3> Rating: {{item["googleReview"][0]["rating"]}}</h3></p>
-											<p><text style="Font-Size:1.5em;font-style:italic;"> {{item['googleReview'][0]['text']}}</text></p>
+											{% if item.get("googleReview", "") != "" %}
+												<p> Review from {{item["googleReview"][0]["author_name"]}} on {{item["googleReview"][0]["time"]}}</p>
+												<img src="{{item['googleReview'][0]['profile_photo_url']}}" style="float:left;">
+												<p><h3> Rating: {{item["googleReview"][0]["rating"]}}</h3></p>
+												<p><text style="Font-Size:1.5em;font-style:italic;"> {{item['googleReview'][0]['text']}}</text></p>
+											{% endif %}
 											<br><br>
 											</div>
 											<hr>
@@ -238,24 +240,25 @@ input[type=text]:focus {
 
 <script>
 {% if found %}
-function myMap() {
-{% set i = length %}
-{% for item in response %}
-	{% set i = i - 1 %}
-	var myCenter{{i}} = new google.maps.LatLng({{item["location"][0]["latitude"]}},{{item["location"][0]["longitude"]}});
-{% endfor %}
+	function myMap() {
+	{% set i = length %}
+	{% for item in response %}
+		{% set i = i - 1 %}
+		{% print i %}
+		var myCenter{{i}} = new google.maps.LatLng({{item["location"][0]["latitude"]}},{{item["location"][0]["longitude"]}});
+	{% endfor %}
 
 	var mapCanvas = document.getElementById("map");
 	var mapOptions = {center: myCenter{{length-1}}, zoom: 14};
 	var map = new google.maps.Map(mapCanvas, mapOptions);
-	
-{% set i = length %}
-{% for item in response %}
-	{% set i = i - 1 %}	
-	var marker{{i}} = new google.maps.Marker({position:myCenter{{i}}});
-	marker{{i}}.setMap(map)
-{% endfor %}
-}
+		
+	{% set i = length %}
+	{% for item in response %}
+		{% set i = i - 1 %}	
+		var marker{{i}} = new google.maps.Marker({position:myCenter{{i}}});
+		marker{{i}}.setMap(map)
+	{% endfor %}
+	}
 {% endif %}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzzuPt6Tql59-LIahJioMsDo9tLB5SgaY&callback=myMap"></script>
