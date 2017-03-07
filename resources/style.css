@@ -1,7 +1,5 @@
 <!Open source https://github.com/MiracleHu/ WITH TINY MODIFICATIONS>
-body {
-  padding: 50px;
-}
+
 form .stars {
   background: url("stars3.fw.png") repeat-x 0 0;
   width: 150px;
