@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <style>
+
+hr {
+	border-top: 3px double #8c8b8b
+}
+
 search{
 padding-right: 10px;
 width: 150%;
@@ -156,7 +161,7 @@ input[type=text]:focus {
     						<div class="panel panel-default">
       							<div class="panel-heading">
         							<h4 class="panel-title">
-          							<a data-toggle="collapse" href="#{{ item['uniqueName'] }}" ><img src={{ item["imageURL"] }} style="float: left"  alt="OOPS" >
+          							<a data-toggle="collapse" href="#{{ item['uniqueName'] }}" ><img src={{ item["imageURL"] }} style="float: left;text-decoration:none;"  alt="OOPS" >
           							<p> {{ item["name"] }} </p>
 									<img src={{ item["ratingImage"] }} style="float: left" />
 									<p> {{ item["reviewCount"] }} Reviews </p>
@@ -169,10 +174,34 @@ input[type=text]:focus {
         							</h4>
       								</div>
       								<div id="{{ item['uniqueName'] }}" class="panel-collapse collapse">
-        								<div class="panel-body" ><p>{{ item["location"] }}</p>
-										
-        									<p>{{ item["isClosed"] }}</p>
-            								<p>{{ item["phoneNumber"] }}</p>
+        								<div class="panel-body" >
+											<div style="background-color:#fff;">
+											<p><h2>Address: {{ item["location"][0]["address"] }}</h2></p>
+            								<p><h2>Phone Number: {{ "({}){}-{}".format(item["phone"][0:3], item["phone"][3:6], item["phone"][6:]) }}</h2></p>
+											</div>
+											<hr>
+											<div style="background-color:#eee;">
+											<img src="/resources/yelp.png" style="height:75px; width:150px">
+											<p> Review from {{item["review"][0]["userName"]}} on {{item["review"][0]["timeCreated"]}}:</p>
+											<img src="{{item['review'][0]['userImage']}}" style="float:left;">
+											<p><h3> Rating: {{item['review'][0]['rating']}}</h3></p>
+											<p><text style="Font-Size:1.5em;font-style:italic;"> {{ item["snippet"] }} </text></p><br><br>
+											</div>
+											<hr>
+											<div style="background-color:#fff;">
+											<img src="/resources/google.png" style="height:75px; width:150px; padding-bottom:15px">
+											<p> Review from {{item["googleReview"][0]["author_name"]}} on {{item["googleReview"][0]["time"]}}</p>
+											<img src="{{item['googleReview'][0]['profile_photo_url']}}" style="float:left;">
+											<p><h3> Rating: {{item["googleReview"][0]["rating"]}}</h3></p>
+											<p><text style="Font-Size:1.5em;font-style:italic;"> {{item['googleReview'][0]['text']}}</text></p>
+											<br><br>
+											</div>
+											<hr>
+											<div style="background-color:#eee;">
+											<p><h1>Give your own review! Rate below.</h1></p>
+											
+											
+											
 											<div class="stars">
 		<input type="radio" name="star" class="star-1" id="star-1" />
 		<label class="star-1" for="star-1">1</label>
@@ -185,6 +214,7 @@ input[type=text]:focus {
 		<input type="radio" name="star" class="star-5" id="star-5" />
 		<label class="star-5" for="star-5">5</label>
 		<span></span>
+		</div>
 	</div>
         								</div>
         

@@ -29,7 +29,6 @@ class GoogleAPI(object):
 		response = requests.get(url+query)
 
 		try:
-			print response.json()["results"][0]["place_id"]
 			return response.json()["results"][0]["place_id"]
 		except:
 			print sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2]
@@ -43,8 +42,7 @@ class GoogleAPI(object):
 		url = "https://maps.googleapis.com/maps/api/place/details/json?"
 		query = urllib.urlencode({"placeid" : id, "key" : self.key})
 		response = requests.get(url+query).json()
-		print "Rating of business {}: {}".format(response.get("name", "none"), response["result"].get("rating", 0))
-		return response["result"].get("rating", 0)
+		return (response["result"].get("rating", 0), response["result"]["reviews"])
 		
 	
 # ------------------------------------- #

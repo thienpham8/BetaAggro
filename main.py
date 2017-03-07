@@ -10,6 +10,7 @@ import user
 import flask_login
 import sys
 import google
+import datetime
 
 #app = Flask(__name__)
 app = Flask(__name__, static_url_path="")
@@ -74,13 +75,19 @@ def searchu():
 		data = connection.select(criteria, limit=5, location=loc)
 		
 		if data:	
-			print "Data elements: ", len(data)
-			# ADD GOOGLE RATINGS
-			g = google.GoogleAPI()
-			for business in data:
-				searchString = business["name"] + " " + business["location"][0]["address"]
-				rating = g.getRating(searchString)
-				business["google"] = rating
+			try:
+				# ADD GOOGLE RATINGS
+				g = google.GoogleAPI()
+				for business in data:
+					searchString = business["name"] + " " + business["location"][0]["address"]
+					rating, review = g.getRating(searchString)
+					business["google"] = rating
+					business["googleReview"] = review
+					business["review"][0]["timeCreated"] = datetime.datetime.fromtimestamp(business["review"][0]["timeCreated"])
+					business["googleReview"][0]["time"] = datetime.datetime.fromtimestamp(business["googleReview"][0]["time"])
+			
+			except:
+				redirect("/?error=Bad Search.")
 				
 			return render_template("search.html", found = True, response = data, length= len(data))
 		else:
